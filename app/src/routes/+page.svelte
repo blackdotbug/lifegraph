@@ -34,8 +34,9 @@
 	};
 
 	let nodes = nodeData.map(node => {
-		let linkCount = links.filter(f => f.source == node.node_id).length
-		node.size = linkCount ? linkCount+4 : 4
+		let linkCount = links.filter(f => f.target == node.node_id).length;
+		node.size = linkCount ? (linkCount*3)+4 : 4;
+		return node;
 	})
 	let canvas;
 	let width = 500;
@@ -46,6 +47,7 @@
 	let transform = d3.zoomIdentity;
 	let simulation, context;
 	let dpi = 1;
+	
 	onMount(() => {
 		dpi = window.devicePixelRatio || 1;
 		context = canvas.getContext("2d");
@@ -79,7 +81,7 @@
 				id: activeNode.label, 
 				nodeDescription: activeNode.description,
 				linkDescriptions: links
-					.filter(f => f.source == activeNode.node_id)
+					.filter(f => f.source.node_id == activeNode.node_id)
 					.map(m => m.description),
 				media: activeNode.media
 			})
@@ -185,7 +187,6 @@
 	}
 
 </script>
-
 <svelte:head>
 	<title>Lifegraph</title>
 	<meta name="description" content="Heather Bree's lifegraph" />
