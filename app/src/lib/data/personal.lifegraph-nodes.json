@@ -1,0 +1,1114 @@
+[{
+  "_id": {
+    "$oid": "65c63d76137b42b03903e4d8"
+  },
+  "node_id": "node_01",
+  "label": "education",
+  "type": "pillar",
+  "description": "Education has always been important to me, and has had great impacts on my life and how I define myself.",
+  "media": {
+    "image": "\"\"",
+    "video": " "
+  }
+},
+{
+  "_id": {
+    "$oid": "65c63f6d137b42b03903e4da"
+  },
+  "node_id": "node_02",
+  "label": "Middle Tennessee State University",
+  "type": "location",
+  "description": "Where I got my bachelor's degree, and learned a ton about myself."
+},
+{
+  "_id": {
+    "$oid": "65c64266137b42b03903e4dc"
+  },
+  "node_id": "node_03",
+  "label": "Graduated with a Bachelor's degree in Magazine Journalism",
+  "type": "event",
+  "description": "I got my degree but I'm already burnt out. Yay!",
+  "date": {
+    "$date": "1999-08-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c642d3137b42b03903e4dd"
+  },
+  "node_id": "node_04",
+  "label": "identity",
+  "type": "pillar",
+  "description": "It's really a neverending process trying to answer the question 'Who am i?'",
+  "media": {
+    "image": "20231229_135632.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6431b137b42b03903e4de"
+  },
+  "node_id": "node_05",
+  "label": "Boulder, CO",
+  "type": "location",
+  "description": "Where I went to live right out of college graduation."
+},
+{
+  "_id": {
+    "$oid": "65c643c0137b42b03903e4df"
+  },
+  "node_id": "node_06",
+  "label": "6 week backpacking trip across Europe",
+  "type": "event",
+  "description": "",
+  "date": {
+    "$date": "1999-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64494137b42b03903e4e0"
+  },
+  "node_id": "node_07",
+  "label": "Bulls Gap, TN",
+  "type": "location",
+  "description": "Where I was born.",
+  "date": {
+    "$date": "1977-09-12T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c644b6137b42b03903e4e1"
+  },
+  "node_id": "node_08",
+  "label": "Greeneville, TN",
+  "type": "location",
+  "description": "Where I graduated high school.",
+  "date": {
+    "$date": "1995-06-01T00:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64509137b42b03903e4e2"
+  },
+  "node_id": "node_09",
+  "label": "activism",
+  "type": "pillar",
+  "description": "This is something that's very important to me. I want to do everything I can to make the world a better place.",
+  "media": {
+    "image": "ana-header-thumb.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64535137b42b03903e4e3"
+  },
+  "node_id": "node_10",
+  "label": "creativity",
+  "type": "pillar",
+  "description": "This keeps me sane."
+},
+{
+  "_id": {
+    "$oid": "65c64671137b42b03903e4e6"
+  },
+  "node_id": "node_13",
+  "label": "Portland, OR",
+  "type": "location",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c64709137b42b03903e4e7"
+  },
+  "node_id": "node_14",
+  "label": "Rusty, Kim and Luna",
+  "type": "person",
+  "description": "My little brother, his wife and my little nibling.",
+  "media": {
+    "image": "C0932468-4CFE-45D5-B1A4-3E544B5D2943.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6476b137b42b03903e4e8"
+  },
+  "node_id": "node_15",
+  "label": "Lynn and JJ",
+  "type": "person",
+  "description": "My knitting friends.",
+  "media": {
+    "image": "2014-12-26 13.16.08.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6478e137b42b03903e4e9"
+  },
+  "node_id": "node_16",
+  "label": "Royal, Jess, and Hudson",
+  "type": "person",
+  "description": "My pirate friends.",
+  "media": {
+    "image": "219C8CC0-BF49-4D28-9366-43A487380B9D.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c647aa137b42b03903e4ea"
+  },
+  "node_id": "node_17",
+  "label": "Jon",
+  "type": "person",
+  "description": "My nesting partner.",
+  "media": {
+    "image": "20240223_171733.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c647b8137b42b03903e4eb"
+  },
+  "node_id": "node_20",
+  "label": "Russell",
+  "type": "person",
+  "description": "My long-distance partner.",
+  "media": {
+    "image": "20230909_144312.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c647dc137b42b03903e4ec"
+  },
+  "node_id": "node_18",
+  "label": "Dave",
+  "type": "person",
+  "description": "My long-term friend.",
+  "media": {
+    "image": "20240329_153904.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64c08137b42b03903e4fa"
+  },
+  "node_id": "node_19",
+  "label": "Tennessee Women's Leadership Conference",
+  "type": "event",
+  "description": "",
+  "date": {
+    "$date": "1998-03-26T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "Screenshot2024-04-02T1.38.57 PM.png",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64c5a137b42b03903e4fb"
+  },
+  "node_id": "node_21",
+  "label": "Elected President of MTSU Lambda Student Group",
+  "type": "event",
+  "description": "Yeah, even introverts sometimes run for leadership positions.",
+  "date": {
+    "$date": "1998-04-04T07:00:00.000Z"
+  },
+  "media": {
+    "link": "https://arc.net/l/quote/eedzplls",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64cbb137b42b03903e4fc"
+  },
+  "node_id": "node_22",
+  "label": "Got a 170 on the LSAT",
+  "type": "event",
+  "description": "But I only took it on a dare.",
+  "date": {
+    "$date": "2000-05-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64cf8137b42b03903e4fd"
+  },
+  "node_id": "node_23",
+  "label": "University of Oregon",
+  "type": "location",
+  "description": "Where I got accepted to and dropped out of law school."
+},
+{
+  "_id": {
+    "$oid": "65c64d36137b42b03903e4fe"
+  },
+  "node_id": "node_24",
+  "label": "Dropped out of law school",
+  "type": "event",
+  "description": "Midway through my second term I realized it wasn't for me.",
+  "date": {
+    "$date": "2001-02-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64de8137b42b03903e4ff"
+  },
+  "node_id": "node_25",
+  "label": "Second place beauty queen",
+  "type": "event",
+  "description": "Mom put me in pageants as a way to combat my debilitating shyness. It didn't work.",
+  "date": {
+    "$date": "1982-01-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551036966396.jpg_1551036969835.jpeg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64e7f137b42b03903e500"
+  },
+  "node_id": "node_26",
+  "label": "Got my Master's in Predictive Analytics",
+  "type": "event",
+  "description": "Attended an online program at Northwestern University.",
+  "date": {
+    "$date": "2016-05-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "2014-06-26 10.29.07.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c64f09137b42b03903e501"
+  },
+  "node_id": "node_27",
+  "label": "Learned to code",
+  "type": "event",
+  "description": "Took courses at Portland Community College. JavaScript was my first language and will always be my favorite.",
+  "date": {
+    "$date": "2008-01-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6556b137b42b03903e505"
+  },
+  "node_id": "node_28",
+  "label": "Polycrafters",
+  "type": "person",
+  "description": "A crafting group I've been a member of for years.",
+  "media": {
+    "image": "IMG_20190412_143325_821.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c655a8137b42b03903e506"
+  },
+  "node_id": "node_29",
+  "label": "Bookcrafts",
+  "type": "person",
+  "description": "A bookbinder I worked part-time for during grad school. Taught me so much about book-making.",
+  "media": {
+    "image": "IMG_3430.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6566e137b42b03903e507"
+  },
+  "node_id": "node_30",
+  "label": "Gifted my first sewing machine",
+  "type": "event",
+  "description": "Because I've always been extra, my first project was my dress for my midieval themed commitment ceremony.",
+  "date": {
+    "$date": "1999-09-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c65760137b42b03903e509"
+  },
+  "node_id": "node_31",
+  "label": "Jon's liver transplant",
+  "type": "event",
+  "description": "A harrowing experience",
+  "date": {
+    "$date": "2021-03-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1574522569095.jpeg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c657ac137b42b03903e50a"
+  },
+  "node_id": "node_32",
+  "label": "That month I had cancer",
+  "type": "event",
+  "description": "It was terrifying and then it was abruptly and thankfully over.",
+  "date": {
+    "$date": "2022-09-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "20220914_094611.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c65868137b42b03903e50b"
+  },
+  "node_id": "node_33",
+  "label": "Jon's ADHD diagnosis",
+  "type": "event",
+  "description": "It explains so much.",
+  "date": {
+    "$date": "2023-01-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c658f6137b42b03903e50c"
+  },
+  "node_id": "node_34",
+  "label": "Marriage Equaility Celebration",
+  "type": "event",
+  "description": "Pulling my community together to celebrate and shed some light on marriage equality events in Oregon.",
+  "date": {
+    "$date": "2005-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "Screenshot2024-04-02T8.49.15 AM.png",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6b3f77cda450c1b120dce"
+  },
+  "node_id": "node_35",
+  "label": "chosen family",
+  "description": "I'm estranged from most of my relatives, so family is what I say it is.",
+  "type": "pillar"
+},
+{
+  "_id": {
+    "$oid": "65c6b7187cda450c1b120dd7"
+  },
+  "node_id": "node_36",
+  "label": "Seattle, WA",
+  "type": "location",
+  "description": "",
+  "date": "",
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6b72b7cda450c1b120dd8"
+  },
+  "node_id": "node_37",
+  "label": "Knoxville, TN",
+  "type": "location",
+  "description": "",
+  "date": "",
+  "media": {
+    "link": "",
+    "image": "DFCBDE3B-1241-4AC5-B7CE-AE94F8A38A1B.JPG",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6bc087cda450c1b120de9"
+  },
+  "node_id": "node_38",
+  "label": "Ended my longest term relationship. ",
+  "type": "event",
+  "description": "We met in college, and were together for 10 years.",
+  "date": {
+    "$date": "2005-10-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65c6bcdc7cda450c1b120dec"
+  },
+  "node_id": "node_39",
+  "label": "Joined the high school newspaper staff",
+  "type": "event",
+  "description": "Won an award for an article I wrote, but I don't remember the details.",
+  "date": {
+    "$date": "1994-09-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "2015-01-26 14.30.55.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0c9d"
+  },
+  "node_id": "node_40",
+  "label": "Became a GovEx employee",
+  "type": "event",
+  "description": "I was hired to primarily contribute custom data viz to the Coronavirus Resource Center.",
+  "date": {
+    "$date": "2021-01-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0c9e"
+  },
+  "node_id": "node_41",
+  "label": "'Married' my long-term partner",
+  "type": "event",
+  "description": "In an effort that was later overturned in court, the Multnomah County commissioners began issuing same-sex marriage licenses before it was widely recognized as legal. My partner and I were one of hundreds of couples who got married in that tiny window.",
+  "date": {
+    "$date": "2004-03-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "https://www.wweek.com/portland/article-23441-march-3-2004-multnomah-county-unleashes-gay-marriage.html",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0c9f"
+  },
+  "node_id": "node_42",
+  "label": "Advised community college Gay-Straight Alliance",
+  "type": "event",
+  "description": "In my continuing efforts to serve my community, I took on the role of advisor for the GSA at LBCC where I was employed as a marketing assistant.",
+  "date": {
+    "$date": "2003-08-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca0"
+  },
+  "node_id": "node_43",
+  "label": "Became a professional baker",
+  "type": "event",
+  "description": "I got my first kitchen job as the first employee of a startup bakery making bagels, pita, focaccia, sourdough and a really delicious multigrain sandwich bread out of a commercial kitchen and selling at farmers markets.",
+  "date": {
+    "$date": "2007-04-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca1"
+  },
+  "node_id": "node_44",
+  "label": "Became a transcriber for Deaf and Hard of Hearing college students",
+  "type": "event",
+  "description": "Continually burnt out and unhappy in my work-life, I was introduced to the field of real-time transcription. I learned to capture meaning-for-meaning communication using a software called TypeWell. As transcribers, we sat in college classrooms with our students who were able to read the real-time transcript of everything in the room on a connected laptop. This was the job I held the longest in my entire career, though it took several different forms over the years",
+  "date": {
+    "$date": "2004-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca2"
+  },
+  "node_id": "node_45",
+  "label": "Singled out as a TAG kid in a rural school",
+  "type": "event",
+  "description": "I was tested and found gifted in first grade, at Bulls Gap Elementary. At the time, all it meant for me was an hour of puzzles each day with a handful of other kids.",
+  "date": {
+    "$date": "1983-09-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca3"
+  },
+  "node_id": "node_46",
+  "label": "Earned a trip to the state science fair with my brine shrimp project",
+  "type": "event",
+  "description": "I honestly don't remember much about it. But, I liked winning awards.",
+  "date": {
+    "$date": "1988-02-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca4"
+  },
+  "node_id": "node_47",
+  "label": "My first real tech gig",
+  "type": "event",
+  "description": "They called me a web content specialist. I spent one evening a week taking Adobe InDesign files and using XML scripts to export the content into the Willamette Week's online CMS. I also got to make interactive graphics using some arcane technology in photoshop to export animated PNGs, I think.",
+  "date": {
+    "$date": "2007-03-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca5"
+  },
+  "node_id": "node_48",
+  "label": "A return to science fairs",
+  "type": "event",
+  "description": "I was hired in a part-time gig (at the time I had three other part time gigs as well) as Assistant State Fair Director of the Oregon state science fair. This was my second tech gig, as I took over the care and maintenance of a bespoke PHP programmed online registration system. This small team of me and two other women wrangled several regional science fairs, the two annual state fairs (one for middle schoolers and one for high schoolers) and a yearly trip of those qualified to the Intel ISEF each year.",
+  "date": {
+    "$date": "2007-08-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "4616237419_07bb1d7c18_c.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca6"
+  },
+  "node_id": "node_49",
+  "label": "My mammaw passed",
+  "type": "event",
+  "description": "Most times she felt like the only person in my family who understood me. She wasn't perfect, but she's what I think of when people with healthy families talk about their familial bond. I was on a science fair trip at Inianapolis at the time and couldn't be there for her funeral.",
+  "date": {
+    "$date": "2009-05-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "IMG_3567.JPG",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca7"
+  },
+  "node_id": "node_50",
+  "label": "An experiment in corporate employment",
+  "type": "event",
+  "description": "Due to a loss in funding, I lost my science fair gig and my carefully stacked series of part-time gigs kind of collapsed. I decided to try for full-time employment and go all in on this programming stuff. During the first interview with the recruiter, when she said the job was for Nike I initally said no thanks. After I hung up, I just sat on the couch thinking 'am I sure about that?' I called the recruiter back 5 minutes later and I ended up working at Nike for almost 3 years.",
+  "date": {
+    "$date": "2011-10-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "IMG_1613.JPG",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca8"
+  },
+  "node_id": "node_51",
+  "label": "Getting back in the kitchen",
+  "type": "event",
+  "description": "In order to put myself through grad school after leaving Nike, I sold all my stock and took an overnight gig as a bagel baker for one of Portlands more established bakeries.",
+  "date": {
+    "$date": "2014-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "2014-07-18 02.24.29.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0ca9"
+  },
+  "node_id": "node_52",
+  "label": "My first data job",
+  "type": "event",
+  "description": "I landed a long term contract gig with an outfit based in London, working on their online platform for survey collection and management. They worked with nonprofits and NGO's globally to help them solicit feedback and incorporate those survey results in their work.",
+  "date": {
+    "$date": "2016-03-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "feedbackcommons-overview.png",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0caa"
+  },
+  "node_id": "node_53",
+  "label": "Me? a Teacher?",
+  "type": "event",
+  "description": "I responded to a recruiter on LinkedIn to apply to teach a data visualization and analytics bootcamp curriculum part time. It was a good way to supplement my freelance income with something steady, and I didn't know I'd find it so fulfilling or be that good at it.",
+  "date": {
+    "$date": "2019-07-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "bootcamp-git-ecosystem.png",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc1be71e0b7bf8b9f0cab"
+  },
+  "node_id": "node_54",
+  "label": "Bought my first car in 15 years",
+  "type": "event",
+  "description": "Well, during the pandemic I did. I bought a car for two reasons. 1: Jon's car was unreliable and we needed to be able to get him to the hospital in a moment's notice if a viable liver became available. 2: the pandemic had made the public transit system feel unsafe as a transportation option. Prior to that the last time I'd owned a vehicle was before I moved to Portland in 2005.",
+  "date": {
+    "$date": "2021-02-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc73d71e0b7bf8b9f0cac"
+  },
+  "node_id": "node_55",
+  "label": "Lark's Gotcha Day",
+  "type": "event",
+  "description": "My pretty kitty chose me at the Vancouver Washington animal shelter, where I had volunteered for a bit the year prior. I am not a parent of any sort, but I am Lark's nest monster who cleans her poops and feeds her and pays appropriate tribute to her glorious fur.",
+  "date": {
+    "$date": "2018-03-14T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "IMG_20180814_081100_642.jpg",
+    "video": "20200220_194211.mp4"
+  }
+},
+{
+  "_id": {
+    "$oid": "65fdc82d71e0b7bf8b9f0cad"
+  },
+  "node_id": "node_56",
+  "label": "Cosmo's Gotcha Day",
+  "type": "event",
+  "description": "Technically Jon's, I insisted Jon get a dog after his transplant as an incentive to get up and move around and to have something to think about and care for outside of his own recovery. While once upon a time I had been quite afraid of dogs, I've come a long way and Cosmo has grown on me a lot.",
+  "date": {
+    "$date": "2021-05-13T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "20210516_093816.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660442090bae8667e26f371a"
+  },
+  "node_id": "node_57",
+  "label": "My parents divorce",
+  "type": "event",
+  "description": "Given that my earliest memory is of my parents arguing, this is not a surprise with hindsight. I was 4 or 5.",
+  "date": {
+    "$date": "1981-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660444730bae8667e26f371d"
+  },
+  "node_id": "node_58",
+  "label": "My mom remarries",
+  "type": "event",
+  "description": "I served as her maid of honor. My step-father was my primary father-figure during my childhood. I don't have a lot of faults with him. He put me on his Harley when I was 6 and we rode circles around the house instilling a long-lasting love of motorcycle rides.",
+  "date": {
+    "$date": "1984-05-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "IM_A0023.JPG",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "66045edb0bae8667e26f3722"
+  },
+  "node_id": "node_59",
+  "label": "Baby brother is born",
+  "type": "event",
+  "description": "I wore a cheerleading costume and did cartwheels up and down the hospital hallway. I was 9.",
+  "date": {
+    "$date": "1986-09-26T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "062AC138-093D-40F2-9B8F-DF72AD8ED859.JPG",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "6604621f0bae8667e26f3727"
+  },
+  "node_id": "node_60",
+  "label": "Bought my first house",
+  "type": "event",
+  "description": "Post-cancer, post-pandemic me decided that buying a house would be a good idea. Jury is still out. It's been a major struggle.",
+  "date": {
+    "$date": "2023-06-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "20240112_143047.jpg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660464170bae8667e26f372a"
+  },
+  "node_id": "node_61",
+  "label": "Met my ex-wife",
+  "type": "event",
+  "description": "It was a story of roommates falling in love. Though we first met at a support group offered through the queer student group for struggles with family of origin.",
+  "date": {
+    "$date": "1995-12-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551035472923.jpg_1551035490914.jpeg",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660465870bae8667e26f372c"
+  },
+  "node_id": "node_62",
+  "label": "Joined the college newspaper staff",
+  "type": "event",
+  "description": "I waltzed into the Sidelines office early in my freshman year, walked up to the news desk and said put me to work.",
+  "date": {
+    "$date": "1995-09-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660467240bae8667e26f372e"
+  },
+  "node_id": "node_63",
+  "label": "Became a reporter for the town daily",
+  "type": "event",
+  "description": "Instead of selecting me to be editor of the college newspaper my senior year, the advisor recommended me to the editor of the local daily. I wrote really long articles about old war vets and all the weird ways people pampered their pets.",
+  "date": {
+    "$date": "1998-07-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "66046d730bae8667e26f3731"
+  },
+  "node_id": "node_64",
+  "label": "Trying my hand at graphic design",
+  "type": "event",
+  "description": "Given the amount of journalistic burnout I felt, I needed to pivot and the most marketable skill I had at that time was the design portion of my bachelor's degree. So I got a job at the design deks at a locally owned copy shop.",
+  "date": {
+    "$date": "1999-10-01T07:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "6606d5d50bae8667e26f3734"
+  },
+  "node_id": "node_65",
+  "label": "Learned HTML and CSS",
+  "type": "event",
+  "description": "In my role as marketing assistant at Linn-Benton Community College, I learned my first bits about the web to help publish the online class catalog.",
+  "date": {
+    "$date": "2002-03-01T08:00:00.000Z"
+  },
+  "media": {
+    "link": "",
+    "image": "",
+    "video": ""
+  }
+},
+{
+  "_id": {
+    "$oid": "660c6edf603d737ec7797161"
+  },
+  "node_id": "node_66",
+  "label": "Matthew Shepard Vigil",
+  "description": "One of the events that occured while I was Lambda president. It was followed by a rash of local attacks on queer students. In my dual role as Lambda president and local journalist I was a liaison to victims of local hate crimes and advocated for local news coverage of those events from within the newsroom.",
+  "date": {
+    "$date": "1998-10-13T07:00:00.000Z"
+  },
+  "type": "event"
+},
+{
+  "_id": {
+    "$oid": "660c6fc2603d737ec7797162"
+  },
+  "node_id": "node_67",
+  "label": "Nashville Pride Parade",
+  "description": "My first event as Lambda president was to lead a contingent of students in the Nashville Pride Parade. We got close to 100 students to march with us, and were met with religious protesters on every single corner.",
+  "date": {
+    "$date": "1998-06-01T07:00:00.000Z"
+  },
+  "type": "event"
+},
+{
+  "_id": {
+    "$oid": "660c75cf603d737ec7797163"
+  },
+  "node_id": "node_68",
+  "type": "event",
+  "label": "That month I wrote a novel",
+  "description": "I participated in NaNoWriMo three times, and I completed a 30,000 word novel rough draft once. But I got involved with the organization and became a volunteer ambassador and event organizer. And one time I was interviewed for a short documentary about it.",
+  "media": {
+    "image": "0BB46E0E-EB19-4D71-94E1-D4039AE5EBE1.JPG"
+  },
+  "date": {
+    "$date": "2010-11-01T07:00:00.000Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c769a603d737ec7797164"
+  },
+  "node_id": "node_69",
+  "type": "event",
+  "label": "On the organizing committee for ACT-W.",
+  "description": "This was a major women in tech conference organized by ChickTech.",
+  "date": {
+    "$date": "2015-04-12T07:00:00.000Z"
+  },
+  "media": {
+    "image": "2015-04-13 08.33.25.jpg"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c772b603d737ec7797165"
+  },
+  "node_id": "node_70",
+  "label": "Design Like Mad PDX",
+  "description": "Helped organize a 12-hour design event that matched volunteer designers with local non-profits to produce something the non-profit needs, like a new website design or a pamphlet.",
+  "date": {
+    "$date": "2015-11-07T08:00:00.000Z"
+  },
+  "media": {
+    "image": "2015-11-07T19.56.10.jpg"
+  },
+  "type": "event"
+},
+{
+  "_id": {
+    "$oid": "660c77cf603d737ec7797166"
+  },
+  "node_id": "node_71",
+  "label": "Edinburgh!",
+  "description": "I've been there three(?) times now. It's my second favorite city in the world after Portland.",
+  "date": {
+    "$date": "2015-06-12T07:00:00.000Z"
+  },
+  "media": {
+    "image": "2015-06-12T16.06.08.jpg"
+  },
+  "type": "event"
+},
+{
+  "_id": {
+    "$oid": "660c7865603d737ec7797167"
+  },
+  "node_id": "node_72",
+  "label": "A tiny dancer",
+  "type": "event",
+  "date": {
+    "$date": "1983-06-01T07:00:00.000Z"
+  },
+  "description": "Mom was determined that would have a good well-rounded resume as a child because she wanted to make sure I'd look good on my college applications. There were lots of afterschool activities, like tap and ballet, that started when I was in first grade.",
+  "media": {
+    "image": "F7A0D6DE-F819-46E3-B7D7-B8EABCD08A8B.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c790c603d737ec7797168"
+  },
+  "node_id": "node_73",
+  "type": "event",
+  "label": "The last time I saw my dad",
+  "description": "My relationship with my father was on-again-off-again from the moment my parents got divorced. The last time I saw him was his first trip to Portland.",
+  "date": {
+    "$date": "2012-07-01T07:00:00.000Z"
+  },
+  "media": {
+    "image": "70BD480C-04D2-4315-A447-18FA1936F9B5.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c79b8603d737ec7797169"
+  },
+  "node_id": "node_11",
+  "label": "My first gaming console was a commodore 64",
+  "type": "event",
+  "description": "But I also had the first nintendo console, a nintendo 64, a PS1, a Sega Genesis. Family togetherness time was all of us trading off the controller as per our strengths as players to get through the latest Super Mario, or Legends of Zelda, or Final Fantasy Game. We bought the magazine game walkthroughs, guys. We were a serious gaming family.",
+  "date": {
+    "$date": "1985-12-01T08:00:00.000Z"
+  },
+  "media": {
+    "image": "483BD955-C0E3-4B3C-8E57-C1D8B56A12C0.JPG"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c7b8b603d737ec779716a"
+  },
+  "node_id": "node_12",
+  "type": "event",
+  "label": "My first cosplay",
+  "description": "I was Wonder Woman",
+  "date": {
+    "$date": "1984-10-01T07:00:00.000Z"
+  },
+  "media": {
+    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551036919010.jpg_1551036921963.jpeg"
+  }
+},
+{
+  "_id": {
+    "$oid": "660c7e6d603d737ec779716b"
+  },
+  "node_id": "node_74",
+  "type": "event",
+  "label": "The inaugural Blanket Fort Day",
+  "description": "The more customized my definition of family became the more I started divorcing myself from typical holiday experiences. I stopped participating in Thanksgiving, and instead created Blanket Fort Day. It was an event held the Friday and Saturday after Thanksgiving. I would make giant blanket forts and a super fancy feast. There would be cartoons and art supplies and soft music and pajamas. Any member of my chosen family was invited to drop in and relax and recharge among chosen family, especially if their biological/legal family situation was stressfull.",
+  "date": {
+    "$date": "2017-11-29T08:00:00.000Z"
+  },
+  "media": {
+    "image": "20180918_101157.jpg"
+  }
+}]

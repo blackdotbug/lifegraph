@@ -1,0 +1,789 @@
+[{
+  "_id": {
+    "$oid": "65c64983137b42b03903e4f1"
+  },
+  "source": "node_07",
+  "target": "node_04",
+  "description": "I will forever be a small-town girl becaue of where I was born."
+},
+{
+  "_id": {
+    "$oid": "65c64a45137b42b03903e4f4"
+  },
+  "source": "node_03",
+  "target": "node_01",
+  "description": "Not the first in my family to graduate with a four-year degree, but only because my mom graduated while I was in high school."
+},
+{
+  "_id": {
+    "$oid": "65c64a77137b42b03903e4f5"
+  },
+  "source": "node_03",
+  "target": "node_02",
+  "description": "Go blue something or other... I don't do sports."
+},
+{
+  "_id": {
+    "$oid": "65c64ac2137b42b03903e4f8"
+  },
+  "source": "node_06",
+  "target": "node_04",
+  "description": "My first time leaving the country, and firmly establishing me as a traveller."
+},
+{
+  "_id": {
+    "$oid": "65c6a6207cda450c1b120dc0"
+  },
+  "source": "node_29",
+  "target": "node_10",
+  "description": "Bookbinding is one of my more meditative creative practices."
+},
+{
+  "_id": {
+    "$oid": "65c6a8077cda450c1b120dc1"
+  },
+  "source": "node_34",
+  "target": "node_09",
+  "description": "The personal is political."
+},
+{
+  "_id": {
+    "$oid": "65c6a8607cda450c1b120dc2"
+  },
+  "source": "node_33",
+  "target": "node_04",
+  "description": "While my neurodivergence is decidedly not ADHD flavored, I've discovered some autistic traits in my self as I learn with Jon about ADHD."
+},
+{
+  "_id": {
+    "$oid": "65c6a88d7cda450c1b120dc3"
+  },
+  "source": "node_32",
+  "target": "node_04",
+  "description": "Add to my identity definition \"cancer survivor\"."
+},
+{
+  "_id": {
+    "$oid": "65c6a9287cda450c1b120dc4"
+  },
+  "source": "node_30",
+  "target": "node_10",
+  "description": "I would continue to use that sewing machine for the next 15-20 years."
+},
+{
+  "_id": {
+    "$oid": "65c6a9d87cda450c1b120dc5"
+  },
+  "source": "node_28",
+  "target": "node_10",
+  "description": "My favorite events are the crafty beach weekends. "
+},
+{
+  "_id": {
+    "$oid": "65c6aa197cda450c1b120dc6"
+  },
+  "source": "node_27",
+  "target": "node_01",
+  "description": "Even though I didn't receive a degree or certificate, this was a major step in my educational journey."
+},
+{
+  "_id": {
+    "$oid": "65c6aa5b7cda450c1b120dc7"
+  },
+  "source": "node_01",
+  "target": "node_04",
+  "description": "From elementary school talented and gifted program to present, my intelligence has been one of my defining characteristics."
+},
+{
+  "_id": {
+    "$oid": "65c6aa847cda450c1b120dc8"
+  },
+  "source": "node_09",
+  "target": "node_04",
+  "description": "I have called myself an activist since college."
+},
+{
+  "_id": {
+    "$oid": "65c6aab57cda450c1b120dc9"
+  },
+  "source": "node_10",
+  "target": "node_04",
+  "description": "Being a maker of things is one of the primary ways I identify myself."
+},
+{
+  "_id": {
+    "$oid": "65c6b1877cda450c1b120dca"
+  },
+  "source": "node_20",
+  "target": "node_35",
+  "description": "Yep, I have multiple romantic partners. Add polyromantic to my identity."
+},
+{
+  "_id": {
+    "$oid": "65c6b1b77cda450c1b120dcb"
+  },
+  "source": "node_17",
+  "target": "node_35",
+  "description": "I love having someone to share a home with."
+},
+{
+  "_id": {
+    "$oid": "65c6b1e17cda450c1b120dcc"
+  },
+  "source": "node_18",
+  "target": "node_35",
+  "description": "I'm a person with a very small inner circle of friends."
+},
+{
+  "_id": {
+    "$oid": "65c6b3987cda450c1b120dcd"
+  },
+  "source": "node_19",
+  "target": "node_09",
+  "description": "My first taste of activism, really."
+},
+{
+  "_id": {
+    "$oid": "65c6b4297cda450c1b120dcf"
+  },
+  "source": "node_35",
+  "target": "node_04",
+  "description": "How I define my family is a major part of my identity."
+},
+{
+  "_id": {
+    "$oid": "65c6b5e27cda450c1b120dd0"
+  },
+  "source": "node_16",
+  "target": "node_35",
+  "description": "Their dog Lucy helped me get over my fear of dogs. "
+},
+{
+  "_id": {
+    "$oid": "65c6b61f7cda450c1b120dd1"
+  },
+  "source": "node_14",
+  "target": "node_35",
+  "description": "I've recently reconnected with my brother, and it's nice to call some relatives chosen family again. "
+},
+{
+  "_id": {
+    "$oid": "65c6b6527cda450c1b120dd2"
+  },
+  "source": "node_15",
+  "target": "node_35",
+  "description": "The closest thing I have to parental figures."
+},
+{
+  "_id": {
+    "$oid": "65c6b6a27cda450c1b120dd3"
+  },
+  "source": "node_15",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b6b67cda450c1b120dd4"
+  },
+  "source": "node_16",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b6c67cda450c1b120dd5"
+  },
+  "source": "node_17",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b6eb7cda450c1b120dd6"
+  },
+  "source": "node_18",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b74f7cda450c1b120dd9"
+  },
+  "source": "node_20",
+  "target": "node_36",
+  "description": "Russell lives in Seattle. I go visit a few times a year."
+},
+{
+  "_id": {
+    "$oid": "65c6b7bf7cda450c1b120dda"
+  },
+  "source": "node_14",
+  "target": "node_37",
+  "description": "Rusty and fam live near the land of Dollywood!"
+},
+{
+  "_id": {
+    "$oid": "65c6b7fd7cda450c1b120ddb"
+  },
+  "source": "node_22",
+  "target": "node_01",
+  "description": "Definitely an overacheiver."
+},
+{
+  "_id": {
+    "$oid": "65c6b87f7cda450c1b120ddc"
+  },
+  "source": "node_25",
+  "target": "node_04",
+  "description": "Been a lifelong introvert and ain't nothing in the 'verse can stop me."
+},
+{
+  "_id": {
+    "$oid": "65c6b8c97cda450c1b120ddd"
+  },
+  "source": "node_28",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b8d07cda450c1b120dde"
+  },
+  "source": "node_29",
+  "target": "node_13",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b9037cda450c1b120ddf"
+  },
+  "source": "node_30",
+  "target": "node_05",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b9497cda450c1b120de0"
+  },
+  "source": "node_33",
+  "target": "node_17",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b9527cda450c1b120de1"
+  },
+  "source": "node_31",
+  "target": "node_17",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6b9ae7cda450c1b120de2"
+  },
+  "source": "node_26",
+  "target": "node_01",
+  "description": "First in my family to get an advanced degree."
+},
+{
+  "_id": {
+    "$oid": "65c6b9fc7cda450c1b120de3"
+  },
+  "source": "node_24",
+  "target": "node_01",
+  "description": "Even our failures must be logged as contributors to the direction of our journies."
+},
+{
+  "_id": {
+    "$oid": "65c6ba2d7cda450c1b120de4"
+  },
+  "source": "node_24",
+  "target": "node_23",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6ba937cda450c1b120de6"
+  },
+  "source": "node_21",
+  "target": "node_09",
+  "description": "I was very much trying to work within the system, but that can still be a form of activism."
+},
+{
+  "_id": {
+    "$oid": "65c6bad07cda450c1b120de7"
+  },
+  "source": "node_21",
+  "target": "node_04",
+  "description": "At the time I identified as bisexual. I find the term pansexual better suits me now. "
+},
+{
+  "_id": {
+    "$oid": "65c6bb3d7cda450c1b120de8"
+  },
+  "source": "node_21",
+  "target": "node_02",
+  "description": "We were major players in getting the university to include sexual orientation in its nondiscrimination policy."
+},
+{
+  "_id": {
+    "$oid": "65c6bc607cda450c1b120deb"
+  },
+  "source": "node_38",
+  "target": "node_04",
+  "description": "Add to my identity former partner of an alcoholic. "
+},
+{
+  "_id": {
+    "$oid": "65c6bcef7cda450c1b120ded"
+  },
+  "source": "node_39",
+  "target": "node_08",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6bd047cda450c1b120dee"
+  },
+  "source": "node_39",
+  "target": "node_01",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65c6bec67cda450c1b120def"
+  },
+  "source": "node_22",
+  "target": "node_23",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "65fdc86a71e0b7bf8b9f0caf"
+  },
+  "source": "node_56",
+  "target": "node_35",
+  "description": "I didn't think my family would include a dog, but here we are."
+},
+{
+  "_id": {
+    "$oid": "65fdc8ef71e0b7bf8b9f0cb0"
+  },
+  "source": "node_55",
+  "target": "node_35",
+  "description": "Lark would call herself the head of this household, I'm sure. While I'm against the label 'pet parent' for myself, pets are without a doubt important members of my chosen family."
+},
+{
+  "_id": {
+    "$oid": "65fdc99271e0b7bf8b9f0cb1"
+  },
+  "source": "node_54",
+  "target": "node_04",
+  "description": "I've been mostly car free my adult life. I got my first car when I was 17. I had another while in college, but it spent a lot of time in the resident hall parking lot and I had to replace the engine because it threw a rod on a road trip. So, I have typically used partners' cars or rented or relied on a car sharing service when I need one. I'm primarily a pedestrian and a public transit rider though."
+},
+{
+  "_id": {
+    "$oid": "65fdca6d71e0b7bf8b9f0cb2"
+  },
+  "source": "node_53",
+  "target": "node_01",
+  "description": "While certainly not the first job in academia I've held, it is the first time I've been an educator and I really enjoyed that role."
+},
+{
+  "_id": {
+    "$oid": "65fdcae171e0b7bf8b9f0cb3"
+  },
+  "source": "node_52",
+  "target": "node_04",
+  "description": "This gig really helped solidify data nerd as a part of my identity."
+},
+{
+  "_id": {
+    "$oid": "65fdcb5671e0b7bf8b9f0cb5"
+  },
+  "source": "node_52",
+  "target": "node_09",
+  "description": "I continue to devote my working life toward endeavors that are helping to make the world a better place."
+},
+{
+  "_id": {
+    "$oid": "65fdcc8571e0b7bf8b9f0cb6"
+  },
+  "source": "node_51",
+  "target": "node_10",
+  "description": "I've come to realize that while I'm really good at logic and building intangible things out of numbers, I need to maintain a connection to something physical. Baking is a creative activity for me, even when it's work. Putting my hands in some dough can center me just the same as stitching fabric or paper."
+},
+{
+  "_id": {
+    "$oid": "65fdcd2471e0b7bf8b9f0cb7"
+  },
+  "source": "node_50",
+  "target": "node_04",
+  "description": "I learned a lot during my time at Nike, including a few things about who I am not. I am not a person who enjoys making a company more profits."
+},
+{
+  "_id": {
+    "$oid": "65fdcd8e71e0b7bf8b9f0cb8"
+  },
+  "source": "node_49",
+  "target": "node_35",
+  "description": "It became very difficult after mammaw passed to maintain any lasting relationships with my father's side of the family. And, at this time my relationship with my mother was very strained. At the same time I was building connections in Portland with many of the folks I consider my chosen family now."
+},
+{
+  "_id": {
+    "$oid": "65fdce5571e0b7bf8b9f0cb9"
+  },
+  "source": "node_48",
+  "target": "node_01",
+  "description": "The position was funded by the Portland State University Foundation, with the office on campus in downtown, and we were heavily involved with school systems across the state. Yet another way I've been connected to the educational system throughout my life."
+},
+{
+  "_id": {
+    "$oid": "65fdd08371e0b7bf8b9f0cba"
+  },
+  "source": "node_48",
+  "target": "node_04",
+  "description": "Part of my official job title was Webmaster, which I think was already an outdated term even then. But the science fair invested some of it's money to send me to community college to learn programming and I got my hands really dirty in some code that had to do with file and user management and content moderation and approvals."
+},
+{
+  "_id": {
+    "$oid": "65fdd15871e0b7bf8b9f0cbb"
+  },
+  "source": "node_47",
+  "target": "node_04",
+  "description": "This really is the first stop on the path to me becoming someone who writes code, whatever you want to call it. Today I largely settle on developer."
+},
+{
+  "_id": {
+    "$oid": "65fdd1c171e0b7bf8b9f0cbc"
+  },
+  "source": "node_46",
+  "target": "node_01",
+  "description": "A formative moment, for sure."
+},
+{
+  "_id": {
+    "$oid": "65fdd1ff71e0b7bf8b9f0cbd"
+  },
+  "source": "node_45",
+  "target": "node_01",
+  "description": "This would certainly have an effect on my experience of education as a student, and not in a good way."
+},
+{
+  "_id": {
+    "$oid": "65fdd25b71e0b7bf8b9f0cbe"
+  },
+  "source": "node_45",
+  "target": "node_04",
+  "description": "If there's a meme that includes mention of TAG kids, I probably feel it. This label is an uncomfortably large part of my identity, and seen now through the lense of my neurodivergence it's so telling."
+},
+{
+  "_id": {
+    "$oid": "65fdd40171e0b7bf8b9f0cbf"
+  },
+  "source": "node_44",
+  "target": "node_01",
+  "description": "Over and over again, I find myself employed by institutions of higher learning. There's a gravitational pull toward work that's in some way related to education present throughout my career."
+},
+{
+  "_id": {
+    "$oid": "65fdd45b71e0b7bf8b9f0cc0"
+  },
+  "source": "node_44",
+  "target": "node_09",
+  "description": "Is it work or is it activism? Yes. While my goal is always on supporting folks in their ability to self-advocate, I definitely was an advocate for Deaf and Hard of Hearing students in this role."
+},
+{
+  "_id": {
+    "$oid": "65fdd55671e0b7bf8b9f0cc1"
+  },
+  "source": "node_43",
+  "target": "node_10",
+  "description": "I didn't start taking a real interest in the creative part of making food until I left the south. And this experience as a baker really broadened my idea of creativity in baking, especially baking at scale."
+},
+{
+  "_id": {
+    "$oid": "65fdd5d371e0b7bf8b9f0cc2"
+  },
+  "source": "node_42",
+  "target": "node_09",
+  "description": "I grew up before GSAs were a common feature in schools, and even though this position was supposed to be filled by faculty and not staff, I made a case for my involvement and helped the small organization as this small community college host events. I enjoyed helping connect students to resources in the area."
+},
+{
+  "_id": {
+    "$oid": "65fdd69a71e0b7bf8b9f0cc3"
+  },
+  "source": "node_42",
+  "target": "node_01",
+  "description": "I have to admit my involvement here was spurred in part by memories of my time in college and my queer student group. It was important to me that these folks had the kind of access I had had to other queer students."
+},
+{
+  "_id": {
+    "$oid": "65fdd77271e0b7bf8b9f0cc4"
+  },
+  "source": "node_41",
+  "target": "node_04",
+  "description": "I find it a little odd how much effort I had put into the activism of marriage equality, even though the institution of marraige was never something I felt particularly drawn toward in my own life."
+},
+{
+  "_id": {
+    "$oid": "65fdd81471e0b7bf8b9f0cc5"
+  },
+  "source": "node_41",
+  "target": "node_09",
+  "description": "It was definitely one of the more unique demonstrations I've ever been a part of. After waiting in the very long line at the courthouse, and getting our certificate, we walked to a nearby dance club that had a dozen or so officiants who had volunteered to perform ceremonies for the new certificate holders. So my partner and I waited again in a very long line, and reused the rings we'd been wearing since our commitment ceremony."
+},
+{
+  "_id": {
+    "$oid": "65fdd93b71e0b7bf8b9f0cc6"
+  },
+  "source": "node_40",
+  "target": "node_04",
+  "description": "Working here feels like it unifies a lot of the disparate parts of my identity. I've become very comfortable calling myself a developer, I feel surrounded and supported by other people who identify as data nerds, I've been open about my neurodivergence and accepted and accommodated, and I've been able to bring a level of activism and creativity together in my work like never before."
+},
+{
+  "_id": {
+    "$oid": "66043bfc0bae8667e26f3714"
+  },
+  "source": "node_20",
+  "target": "node_17",
+  "description": "Russell and Jon are friends. Russell came down to help support us during my cancer. They have been in my life longer than Jon, but there's no way to substantively compare the two relationships."
+},
+{
+  "_id": {
+    "$oid": "660442480bae8667e26f371b"
+  },
+  "source": "node_57",
+  "target": "node_04",
+  "description": "My childhood memory is really spotty, but this happened early enough in my life that child of divorced parents has always been part of my identity."
+},
+{
+  "_id": {
+    "$oid": "6604430d0bae8667e26f371c"
+  },
+  "source": "node_57",
+  "target": "node_35",
+  "description": "Early influence toward how I ultimately came to define my family."
+},
+{
+  "_id": {
+    "$oid": "66045d4e0bae8667e26f371e"
+  },
+  "source": "node_58",
+  "target": "node_10",
+  "description": "Mom made her own wedding dress and my dress I wore as her maid of honor. It was the last thing I remember her making for me."
+},
+{
+  "_id": {
+    "$oid": "66045dcb0bae8667e26f3721"
+  },
+  "source": "node_25",
+  "target": "node_10",
+  "description": "The only positive thing that came out of my pageant phase is the early connection to sewing it made. Mom made all my pageant dresses, and I usually won secondary awards like best dress."
+},
+{
+  "_id": {
+    "$oid": "66045f080bae8667e26f3723"
+  },
+  "source": "node_59",
+  "target": "node_04",
+  "description": "The family joke is that I loved being a big sister until Rusty learned how to talk. Nine years between us made our sibling relationship strained, and add to that the caretaker role I assumed while my mom worked and went back to school and my dad worked and studied for his GED and went to community college. Rusty accidentally called me 'mom' once and it did not go over well."
+},
+{
+  "_id": {
+    "$oid": "66045fb90bae8667e26f3724"
+  },
+  "source": "node_59",
+  "target": "node_14",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "660460030bae8667e26f3726"
+  },
+  "source": "node_46",
+  "target": "node_48",
+  "description": ""
+},
+{
+  "_id": {
+    "$oid": "6604623a0bae8667e26f3728"
+  },
+  "source": "node_60",
+  "target": "node_04",
+  "description": "First time homeowner, and completely house poor."
+},
+{
+  "_id": {
+    "$oid": "660462b20bae8667e26f3729"
+  },
+  "source": "node_60",
+  "target": "node_13",
+  "description": "Putting down roots"
+},
+{
+  "_id": {
+    "$oid": "6604644b0bae8667e26f372b"
+  },
+  "source": "node_61",
+  "target": "node_02",
+  "description": "A college romance."
+},
+{
+  "_id": {
+    "$oid": "660465960bae8667e26f372d"
+  },
+  "source": "node_62",
+  "target": "node_02",
+  "description": "I was news editor in two years, special sections editor the year after that (which was a consolation prize for being passed over as editor)."
+},
+{
+  "_id": {
+    "$oid": "6604675e0bae8667e26f372f"
+  },
+  "source": "node_63",
+  "target": "node_04",
+  "description": "Brief though it was, my time as a features writer for a local daily supports me owning the label, journalist."
+},
+{
+  "_id": {
+    "$oid": "660468430bae8667e26f3730"
+  },
+  "source": "node_63",
+  "target": "node_09",
+  "description": "My activism collided with my journalism when a trans fiddler was edited out of an album review I did of a local band. I argued with the editor and quit."
+},
+{
+  "_id": {
+    "$oid": "66046d830bae8667e26f3732"
+  },
+  "source": "node_64",
+  "target": "node_05",
+  "description": "Boulder was an incredibly expensive place to live."
+},
+{
+  "_id": {
+    "$oid": "6606d73a0bae8667e26f3735"
+  },
+  "source": "node_65",
+  "target": "node_47",
+  "description": "Step one on my path toward becoming a developer."
+},
+{
+  "_id": {
+    "$oid": "660c848e603d737ec779716d"
+  },
+  "source": "node_74",
+  "target": "node_35",
+  "description": "Part of customizing your family can be customizing your family experiences. It wasn't enough for me to have a friendsgiving. I wanted to change everything about the event and provide something to my family that met a specific need I was seeing among them."
+},
+{
+  "_id": {
+    "$oid": "660c850e603d737ec779716e"
+  },
+  "source": "node_12",
+  "target": "node_10",
+  "description": "My first cosplay was home-made and very nerdy. It perfectly set the tone for my cosplaying future."
+},
+{
+  "_id": {
+    "$oid": "660c8561603d737ec779716f"
+  },
+  "source": "node_12",
+  "target": "node_04",
+  "description": "DC? yes. Marvel? yes. Indi press? yes. Sci-fi/Fantasy? yes. All the nerddoms."
+},
+{
+  "_id": {
+    "$oid": "660c85dd603d737ec7797170"
+  },
+  "source": "node_11",
+  "target": "node_04",
+  "description": "Gamer girl before it was cool."
+},
+{
+  "_id": {
+    "$oid": "660c8606603d737ec7797171"
+  },
+  "source": "node_73",
+  "target": "node_35",
+  "description": "I didn't decide that family would be fluid, it was just my reality."
+},
+{
+  "_id": {
+    "$oid": "660c865d603d737ec7797172"
+  },
+  "source": "node_72",
+  "target": "node_04",
+  "description": "Decidedly not a dancer. Very few of Mom's curated extra-curriculars stuck."
+},
+{
+  "_id": {
+    "$oid": "660c86a5603d737ec7797173"
+  },
+  "source": "node_70",
+  "target": "node_09",
+  "description": "Activism is draining work and its presence in my life has changed over time. This event was a way for me to stay busy while in grad school, use my event planning skills, and make sure that some local nonprofits got access to really good design for their materials."
+},
+{
+  "_id": {
+    "$oid": "660c873a603d737ec7797174"
+  },
+  "source": "node_06",
+  "target": "node_71",
+  "description": "Every few years I've managed to continue travelling. Between these two trips there were trips to Victoria, BC, and to Puerto Vallarta, Mexico, and trips to DC and Boston and New Orleans and San Francisco."
+},
+{
+  "_id": {
+    "$oid": "660c87d7603d737ec7797175"
+  },
+  "source": "node_69",
+  "target": "node_09",
+  "description": "It took exactly no time from my entrance into the tech world to experience gender=based descrimination. Not that you need to experience something to care about it (or at least you shouldn't need to). I was also able to use the experience as the final project in my grad school project management class."
+},
+{
+  "_id": {
+    "$oid": "660c8871603d737ec7797176"
+  },
+  "source": "node_68",
+  "target": "node_10",
+  "description": "My first NaNoWriMo I participated in along with my then boyfriend, mostly as an accountability partner. He was really trying to be a writer. I had fun, so I did it again. The third time I was a NaNoWriMo rebel and actually worked on a comic book script."
+},
+{
+  "_id": {
+    "$oid": "660c88f7603d737ec7797177"
+  },
+  "source": "node_68",
+  "target": "node_09",
+  "description": "Not all my activism is centered around social justice. I was working with NaNoWriMo to increase access to writing, to encourage dreamers to develop a practice, to overcome imposter syndrome. It was about building community and it was awesome."
+},
+{
+  "_id": {
+    "$oid": "660c89da603d737ec7797178"
+  },
+  "source": "node_67",
+  "target": "node_09",
+  "description": "The first pride was a protest. There's no question that showing up and marching through the streets of a city loudly shouting about being queer is still activism, no matter how corporate the festivities have become. Police have no place at pride, though. That one upsets me."
+},
+{
+  "_id": {
+    "$oid": "660c8a91603d737ec7797179"
+  },
+  "source": "node_67",
+  "target": "node_02"
+},
+{
+  "_id": {
+    "$oid": "660c8ab4603d737ec779717a"
+  },
+  "source": "node_66",
+  "target": "node_02"
+},
+{
+  "_id": {
+    "$oid": "660c8ac7603d737ec779717b"
+  },
+  "source": "node_66",
+  "target": "node_09"
+}]
