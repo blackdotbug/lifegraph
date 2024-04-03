@@ -2,6 +2,7 @@
 	import { onMount } from "svelte";
 	import nodeData from "$lib/data/personal.lifegraph-nodes.json";
 	import links from "$lib/data/personal.lifegraph-links.json";
+	import { DateTime } from "luxon";
 	import { scaleLinear, scaleOrdinal } from "d3-scale";
 	import { zoom, zoomIdentity } from "d3-zoom";
 	import { schemeCategory10 } from "d3-scale-chromatic";
@@ -14,8 +15,6 @@
 		forceCenter,
 		forceCollide,
 	} from "d3-force";
-
-	//import { event as currentEvent } from "d3-selection"; // Needed to get drag working, see: https://github.com/d3/d3/issues/2733
 	let d3 = {  
 		zoom,
 		zoomIdentity,
@@ -32,12 +31,25 @@
 		forceCenter,
 		forceCollide,
 	};
-
-	let nodes = nodeData.map(node => {
+	// import {
+	// 	Timeline,
+	// 	TimelineItem,
+	// 	TimelineSeparator,
+	// 	TimelineDot,
+	// 	TimelineConnector,
+	// 	TimelineContent,
+	// 	TimelineOppositeContent
+	// } from 'svelte-vertical-timeline';
+	$: nodes = nodeData.map(node => {
 		let linkCount = links.filter(f => f.target == node.node_id).length;
 		node.size = linkCount ? (linkCount*3)+4 : 4;
 		return node;
 	})
+	$: events = nodeData.filter(f => f.type === "event").map(m => {
+		m.dateLuxon = DateTime.fromFormat(m.date.$date.split("T")[0], "yyyy-MM-dd");
+		m.dateString = m.dateLuxon.toLocaleString({month: "short", year: "numeric"});
+		return m;
+	}).sort((a,b)=> b.dateLuxon - a.dateLuxon);
 	let canvas;
 	let width = 500;
 	let height = 600;
@@ -187,6 +199,9 @@
 	}
 
 </script>
+
+{@debug events}
+
 <svelte:head>
 	<title>Lifegraph</title>
 	<meta name="description" content="Heather Bree's lifegraph" />
@@ -229,6 +244,9 @@
 		display: flex;
 		flex-direction: row;
 	}
+	section.timeline {
+		min-width: 200px;
+	}
 	div.container {
 		height: 75vh;
 	}
@@ -236,9 +254,5 @@
 		position: absolute;
 		width: 45vw;
 		min-width: 300px;
-	}
-	h2 {
-		font-weight: 700;
-		font-size: 1.5rem;
 	}
 </style>
