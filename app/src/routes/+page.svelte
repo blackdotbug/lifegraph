@@ -200,8 +200,6 @@
 
 </script>
 
-{@debug events}
-
 <svelte:head>
 	<title>Lifegraph</title>
 	<meta name="description" content="Heather Bree's lifegraph" />
@@ -211,7 +209,26 @@
 <div>
 	<h1>Heather Bree's Lifegraph</h1>
 	<div class="flex-container">
-		<section class="timeline"></section>
+		<section class="timeline">
+			<Timeline>
+				{#each events as event}
+					<button>
+						<TimelineItem>
+							<TimelineOppositeContent slot="opposite-content">
+								<p>{event.dateString}</p>
+							</TimelineOppositeContent>
+							<TimelineSeparator>
+								<TimelineDot />
+								<TimelineConnector />
+							</TimelineSeparator>
+							<TimelineContent>
+								<p>{event.label}</p>
+							</TimelineContent>
+						</TimelineItem>
+					</button>
+				{/each}
+			</Timeline>
+		</section>
 		<section class="viz">
 			<div on:resize={resize} class="container">
 				{#if activeNode}
@@ -246,6 +263,14 @@
 	}
 	section.timeline {
 		min-width: 200px;
+	}
+	section.timeline button {
+		background: none;
+		border: none;
+		width: 300px;
+	}
+	section.timeline button p {
+		margin: 0;
 	}
 	div.container {
 		height: 75vh;

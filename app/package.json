@@ -51,6 +51,8 @@
 		"d3-selection": "^3.0.0",
 		"d3-zoom": "^3.0.0",
 		"dotenv": "^16.4.1",
-		"mongodb": "^6.3.0"
+		"luxon": "^3.4.4",
+		"mongodb": "^6.3.0",
+		"svelte-vertical-timeline": "^1.0.0"
 	}
 }
