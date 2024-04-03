@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "luxon": "^3.4.4",
-    "svelte-vertical-timeline": "^1.0.0"
-  },
-  "devDependencies": {
-    "@types/luxon": "^3.4.2"
-  }
-}

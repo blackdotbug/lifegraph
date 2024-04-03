@@ -31,15 +31,15 @@
 		forceCenter,
 		forceCollide,
 	};
-	// import {
-	// 	Timeline,
-	// 	TimelineItem,
-	// 	TimelineSeparator,
-	// 	TimelineDot,
-	// 	TimelineConnector,
-	// 	TimelineContent,
-	// 	TimelineOppositeContent
-	// } from 'svelte-vertical-timeline';
+	import {
+		Timeline,
+		TimelineItem,
+		TimelineSeparator,
+		TimelineDot,
+		TimelineConnector,
+		TimelineContent,
+		TimelineOppositeContent
+	} from 'svelte-vertical-timeline';
 	$: nodes = nodeData.map(node => {
 		let linkCount = links.filter(f => f.target == node.node_id).length;
 		node.size = linkCount ? (linkCount*3)+4 : 4;
