@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from "svelte";
+	import { base } from "$app/paths";
 	import nodeData from "$lib/data/personal.lifegraph-nodes.json";
 	import links from "$lib/data/personal.lifegraph-links.json";
 	import { DateTime } from "luxon";
@@ -244,7 +245,7 @@
 				{#if activeNode}
 					<div id="nodeDetails">
 						{#if showCard.media?.image}
-							<img src={`/images/${showCard.media.image}`}/>
+							<img src={`${base}/images/${showCard.media.image}`}/>
 						{/if}
 					<h3>{showCard.id}</h3>
 					{#if showCard.nodeDescription}
