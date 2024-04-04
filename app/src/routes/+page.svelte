@@ -3,6 +3,7 @@
 	import nodeData from "$lib/data/personal.lifegraph-nodes.json";
 	import links from "$lib/data/personal.lifegraph-links.json";
 	import { DateTime } from "luxon";
+	import scrollIntoView from "scroll-into-view-if-needed";
 	import { scaleLinear, scaleOrdinal } from "d3-scale";
 	import { zoom, zoomIdentity } from "d3-zoom";
 	import { schemeCategory10 } from "d3-scale-chromatic";
@@ -71,7 +72,7 @@
 			d3
 			.forceLink(links)
 			.id((d) => d.node_id)
-			.distance(d => d.target.size * 2)
+			.distance(d => d.target.size * 2.5)
 		)
 		.force("charge", d3.forceManyBody().strength(-5))
 		.force("collide", d3.forceCollide(d => d.size))
@@ -80,25 +81,12 @@
 
 		d3.select(context.canvas).on("click", (event) => {
 			const d = simulation.find(
-			transform.invertX(event.offsetX * dpi),
-			transform.invertY(event.offsetY * dpi),
-			50
-		);
-
-		if (d) activeNode = d;
-		else activeNode = false;
-		if (activeNode) {
-			showCard = JSON.parse(
-			JSON.stringify({ 
-				id: activeNode.label, 
-				nodeDescription: activeNode.description,
-				linkDescriptions: links
-					.filter(f => f.source.node_id == activeNode.node_id)
-					.map(m => m.description),
-				media: activeNode.media
-			})
+				transform.invertX(event.offsetX * dpi),
+				transform.invertY(event.offsetY * dpi),
+				50
 			);
-		}
+
+			setShowCard(d);
 		});
 
 		d3.select(canvas)
@@ -118,7 +106,30 @@
 			.on("zoom", zoomed)
 		);
 	});
-
+	function setShowCard(node) {
+		if (node) activeNode = node;
+		else activeNode = false;
+		if (activeNode) {
+			showCard = JSON.parse(
+				JSON.stringify({ 
+					id: activeNode.label, 
+					nodeDescription: activeNode.description,
+					linkDescriptions: links
+						.filter(f => f.source == activeNode.node_id)
+						.map(m => m.description),
+					media: activeNode.media
+				})
+			);
+			simulationUpdate();
+			let allButtons = document.querySelectorAll("section.timeline button");
+			allButtons.forEach((b) => b.classList.remove("violet"));
+			let timelineNode = document.getElementById(activeNode.node_id)
+			if (timelineNode) {
+				timelineNode.classList.add("violet");
+				scrollIntoView(timelineNode, {scrollMode: "if-needed", behavior: "smooth"})
+			}
+		}
+	}
 	function simulationUpdate() {
 		context.save();
 		context.clearRect(0, 0, context.canvas.width, context.canvas.height);
@@ -138,8 +149,8 @@
 		nodes.forEach((d, i) => {
 			context.beginPath();
 			context.arc(d.x, d.y, d.size, 0, 2 * Math.PI);
-			context.strokeStyle = "transparent";
-			context.lineWidth = 1.5;
+			context.strokeStyle = activeNode && activeNode.node_id === d.node_id ? "violet" : "transparent";
+			context.lineWidth = 5;
 			context.stroke();
 			context.fillStyle = color(d.type);
 			context.fill();
@@ -197,7 +208,6 @@
 		width = element.offsetWidth * dpi;
 		height = element.offsetHeight * dpi;
 	}
-
 </script>
 
 <svelte:head>
@@ -212,7 +222,7 @@
 		<section class="timeline">
 			<Timeline>
 				{#each events as event}
-					<button>
+					<button on:click={() => setShowCard(event)} id={event.node_id}>
 						<TimelineItem>
 							<TimelineOppositeContent slot="opposite-content">
 								<p>{event.dateString}</p>
@@ -233,6 +243,9 @@
 			<div on:resize={resize} class="container">
 				{#if activeNode}
 					<div id="nodeDetails">
+						{#if showCard.media?.image}
+							<img src={`/images/${showCard.media.image}`}/>
+						{/if}
 					<h3>{showCard.id}</h3>
 					{#if showCard.nodeDescription}
 						<p>
@@ -263,6 +276,8 @@
 	}
 	section.timeline {
 		min-width: 200px;
+		max-height: 75vh;
+		overflow-y: scroll;
 	}
 	section.timeline button {
 		background: none;
@@ -275,9 +290,23 @@
 	div.container {
 		height: 75vh;
 	}
-	#nodeDetails {
+	div#nodeDetails {
 		position: absolute;
 		width: 45vw;
 		min-width: 300px;
+		pointer-events: none;
+		border-radius: 20px;
+		background-color: rgba(250, 235, 215, 0.299);
+		padding: 20px;
+	}
+	div#nodeDetails img {
+		max-width: 300px;
+		max-height: 300px;
+		border-radius: 20px;
+		float: left;
+		margin: 0 20px 20px 0;
+	}
+	div#nodeDetails h3 {
+		margin-top: 0;
 	}
 </style>

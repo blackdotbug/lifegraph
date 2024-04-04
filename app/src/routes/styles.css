@@ -105,3 +105,11 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+section.timeline ul.timeline li.timeline-item div.timeline-separator span.timeline-dot {
+	background-color: #2ca02c;
+	border-color: #2ca02c;
+}
+section.timeline ul.timeline button.violet li.timeline-item div.timeline-separator span.timeline-dot {
+	background-color: violet;
+	border-color: violet;
+}
