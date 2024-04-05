@@ -116,7 +116,7 @@
 					id: activeNode.label, 
 					nodeDescription: activeNode.description,
 					linkDescriptions: links
-						.filter(f => f.source == activeNode.node_id)
+						.filter(f => f.source.node_id == activeNode.node_id)
 						.map(m => m.description),
 					media: activeNode.media
 				})
@@ -297,7 +297,7 @@
 		min-width: 300px;
 		pointer-events: none;
 		border-radius: 20px;
-		background-color: rgba(250, 235, 215, 0.299);
+		background-color: rgba(250, 235, 215, 0.4);
 		padding: 20px;
 	}
 	div#nodeDetails img {
