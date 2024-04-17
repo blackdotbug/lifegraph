@@ -384,7 +384,7 @@
       -1px 1px 0 #000,
        1px 1px 0 #000;		
 	    font-weight: 700;
-		background-image: url("./images/low-poly-grid-haikei.png");
+		background-image: url("/images/low-poly-grid-haikei.png");
 		background-size: cover;
 		background-repeat: no-repeat;
 		height: 30px;
