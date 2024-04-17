@@ -7,8 +7,7 @@
   "type": "pillar",
   "description": "Education has always been important to me, and has had great impacts on my life and how I define myself.",
   "media": {
-    "image": "",
-    "video": ""
+    "image": "IMG_3832.jpg"
   }
 },
 {
@@ -18,7 +17,10 @@
   "node_id": "node_02",
   "label": "Middle Tennessee State University",
   "type": "location",
-  "description": "Where I got my bachelor's degree, and learned a ton about myself."
+  "description": "Where I got my bachelor's degree, and learned a ton about myself.",
+  "media": {
+    "image": "Screenshot2024-04-1612.24.48PM.jpg"
+  }
 },
 {
   "_id": {
@@ -46,7 +48,18 @@
   "type": "pillar",
   "description": "It's really a neverending process trying to answer the question 'Who am i?'",
   "media": {
-    "image": "20231229_135632.jpg"
+    "image": "20231229_135632.jpg",
+    "gallery": [
+      "Screenshot2023-03-287.58.38AM.jpg",
+      "SmartSelect_20231229_091318_Chrome.jpg",
+      "SmartSelect_20231229_092205_Chrome.jpg",
+      "SmartSelect_20231229_092919_Chrome.jpg",
+      "SmartSelect_20231229_093310_Chrome.jpg",
+      "SmartSelect_20231229_094027_Chrome.jpg",
+      "SmartSelect_20231229_094542_Chrome.jpg",
+      "SmartSelect_20231229_094824_Chrome.jpg",
+      "Screenshot_20240413_091251_Chrome.jpg"
+    ]
   }
 },
 {
@@ -56,7 +69,10 @@
   "node_id": "node_05",
   "label": "Boulder, CO",
   "type": "location",
-  "description": "Where I went to live right out of college graduation."
+  "description": "Where I went to live right out of college graduation.",
+  "media": {
+    "image": "temp_aa373cfc-11c2-4cfb-b48d-032748dd26cc.jpg"
+  }
 },
 {
   "_id": {
@@ -71,7 +87,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "2015-06-04T22.47.33.jpg",
     "video": ""
   }
 },
@@ -83,8 +99,8 @@
   "label": "Bulls Gap, TN",
   "type": "location",
   "description": "Where I was born.",
-  "date": {
-    "$date": "1977-09-12T00:00:00.000Z"
+  "media": {
+    "image": "fcd97896d953de02cafbf17f27ef5330.jpg"
   }
 },
 {
@@ -95,8 +111,8 @@
   "label": "Greeneville, TN",
   "type": "location",
   "description": "Where I graduated high school.",
-  "date": {
-    "$date": "1995-06-01T00:00:00.000Z"
+  "media": {
+    "image": "Screenshot2024-04-161.14.38PM.jpg"
   }
 },
 {
@@ -118,7 +134,27 @@
   "node_id": "node_10",
   "label": "creativity",
   "type": "pillar",
-  "description": "This keeps me sane."
+  "description": "This keeps me sane.",
+  "media": {
+    "image": "20210616_170830.jpg",
+    "gallery": [
+      "2015-10-27T13.15.22.jpg",
+      "20180909_101151.jpg",
+      "20190626_104205.jpg",
+      "20200709_142941.jpg",
+      "20191031_132830.jpg",
+      "20200904_174758.jpg",
+      "20240105_150427.jpg",
+      "IMG_20180827_153232_691.jpg",
+      "ea3259c6bd8694b595c553ec7773.jpg",
+      "1558234911656.jpg",
+      "Desktop-350.jpg",
+      "20181026_183308.jpg",
+      "20191009_074038.jpg",
+      "20230906_201401.jpg",
+      "20231022_141925.jpg"
+    ]
+  }
 },
 {
   "_id": {
@@ -127,7 +163,20 @@
   "node_id": "node_13",
   "label": "Portland, OR",
   "type": "location",
-  "description": ""
+  "description": "My true home.",
+  "media": {
+    "image": "20230917_123034.jpg",
+    "gallery": [
+      "01E78086-0269-44FF-A619-243359573992.jpg",
+      "66E3E0CE-4C67-43A0-B787-F94BBB512CF3.jpg",
+      "F2740ED0-4BC7-4F3F-8979-657C669DBF02.jpg",
+      "IMG_2220.jpg",
+      "IMG_3803.jpg",
+      "2015-11-14T12.52.44.jpg",
+      "20190309_094028.jpg",
+      "IMG_3685.jpg"
+    ]
+  }
 },
 {
   "_id": {
@@ -138,7 +187,11 @@
   "type": "person",
   "description": "My little brother, his wife and my little nibling.",
   "media": {
-    "image": "C0932468-4CFE-45D5-B1A4-3E544B5D2943.jpg"
+    "image": "Screenshot2024-04-1612.53.47PM.jpg",
+    "gallery": [
+      "3547A064-CA87-4476-B7DC-A2271A1641DE.jpg",
+      "C0932468-4CFE-45D5-B1A4-3E544B5D2943.jpg"
+    ]
   }
 },
 {
@@ -150,7 +203,7 @@
   "type": "person",
   "description": "My knitting friends.",
   "media": {
-    "image": "2014-12-26T13.16.08.jpg"
+    "image": "Screenshot2024-04-161.21.07PM.jpg"
   }
 },
 {
@@ -162,7 +215,7 @@
   "type": "person",
   "description": "My pirate friends.",
   "media": {
-    "image": "219C8CC0-BF49-4D28-9366-43A487380B9D.jpg"
+    "image": "Screenshot2024-04-161.24.33PM.jpg"
   }
 },
 {
@@ -259,7 +312,10 @@
   "node_id": "node_23",
   "label": "University of Oregon",
   "type": "location",
-  "description": "Where I got accepted to and dropped out of law school."
+  "description": "Where I got accepted to and dropped out of law school.",
+  "media": {
+    "image": "Knight-Law-Center-Final_900x500.jpg"
+  }
 },
 {
   "_id": {
@@ -292,7 +348,9 @@
   "media": {
     "link": "",
     "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551036966396.jpg_1551036969835.jpg",
-    "video": ""
+    "gallery": [
+      "415BDEDC-EE99-497E-AE7C-F189A5EAEF5B.jpg"
+    ]
   }
 },
 {
@@ -325,7 +383,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "IMG_2350-compressed1.jpg",
     "video": ""
   }
 },
@@ -338,7 +396,8 @@
   "type": "person",
   "description": "A crafting group I've been a member of for years.",
   "media": {
-    "image": "IMG_20190412_143325_821.jpg"
+    "image": "IMG_20190412_143325_821.jpg",
+    "link": "https://www.oregonlive.com/living/2013/03/from_knitting_to_needlework_or.html"
   }
 },
 {
@@ -350,7 +409,8 @@
   "type": "person",
   "description": "A bookbinder I worked part-time for during grad school. Taught me so much about book-making.",
   "media": {
-    "image": "IMG_3430.jpg"
+    "image": "received_377591236333595.jpg",
+    "link": "https://bookcraftsonline.com/BC_faqs.html"
   }
 },
 {
@@ -366,7 +426,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "20230720_095200.jpg",
     "video": ""
   }
 },
@@ -401,7 +461,9 @@
   "media": {
     "link": "",
     "image": "20220914_094611.jpg",
-    "video": ""
+    "gallery": [
+      "image000001.jpg"
+    ]
   }
 },
 {
@@ -417,7 +479,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "SmartSelect_20231229_092205_Chrome.jpg",
     "video": ""
   }
 },
@@ -445,7 +507,21 @@
   "node_id": "node_35",
   "label": "chosen family",
   "description": "I'm estranged from most of my relatives, so family is what I say it is.",
-  "type": "pillar"
+  "type": "pillar",
+  "media": {
+    "image": "received_178832343047006.jpg",
+    "gallery": [
+      "1547666531902.jpg",
+      "ED761FB3-B406-430A-A9D1-A8A55A04A8F1.jpg",
+      "D6E96894-B7BB-4B58-8734-12B28314ED9F.jpg",
+      "adec4aca3148387f5e7906289187.jpg",
+      "20240112_134703.jpg",
+      "20181216_173453.jpg",
+      "20231230_104822.jpg",
+      "2015-06-05T21.58.49.jpg",
+      "2014-12-26T13.16.08.jpg"
+    ]
+  }
 },
 {
   "_id": {
@@ -458,7 +534,7 @@
   "date": "",
   "media": {
     "link": "",
-    "image": "",
+    "image": "20181028_130719.jpg",
     "video": ""
   }
 },
@@ -490,7 +566,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "1551035490914.jpg",
     "video": ""
   }
 },
@@ -524,7 +600,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "20230605_183658.jpg",
     "video": ""
   }
 },
@@ -541,7 +617,7 @@
   },
   "media": {
     "link": "https://www.wweek.com/portland/article-23441-march-3-2004-multnomah-county-unleashes-gay-marriage.html",
-    "image": "",
+    "image": "multnomah-county-board-2004-ca9f7c29f0085f0e.jpg",
     "video": ""
   }
 },
@@ -558,7 +634,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "Screenshot2024-04-161.52.01PM.jpg",
     "video": ""
   }
 },
@@ -575,7 +651,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "Screenshot2024-04-161.59.06PM.jpg",
     "video": ""
   }
 },
@@ -592,7 +668,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "20180913_075439.jpg",
     "video": ""
   }
 },
@@ -609,7 +685,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "1551037043948.jpg",
     "video": ""
   }
 },
@@ -712,7 +788,10 @@
   "media": {
     "link": "",
     "image": "2014-07-18T02.24.29.jpg",
-    "video": ""
+    "gallery": [
+      "2014-10-02T14.44.34.jpg",
+      "IMG_3137.jpg"
+    ]
   }
 },
 {
@@ -756,13 +835,13 @@
   "node_id": "node_54",
   "label": "Bought my first car in 15 years",
   "type": "event",
-  "description": "Well, during the pandemic I did. I bought a car for two reasons. 1: Jon's car was unreliable and we needed to be able to get him to the hospital in a moment's notice if a viable liver became available. 2: the pandemic had made the public transit system feel unsafe as a transportation option. Prior to that the last time I'd owned a vehicle was before I moved to Portland in 2005.",
+  "description": "I bought a car for two reasons. 1: Jon's car was unreliable and we needed to be able to get him to the hospital in a moment's notice if a viable liver became available. 2: the pandemic had made the public transit system feel unsafe as a transportation option. Prior to that the last time I'd owned a vehicle was before I moved to Portland in 2005. We actually ended up with two vehicles because Jon bought one to drive home in from a trip to visit his mom in Arizona, and that became my escape van.",
   "date": {
     "$date": "2021-02-01T08:00:00.000Z"
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "20220423_134131.jpg",
     "video": ""
   }
 },
@@ -780,7 +859,7 @@
   "media": {
     "link": "",
     "image": "IMG_20180814_081100_642.jpg",
-    "video": "20200220_194211.mp4"
+    "video": "20200422_211901.mp4"
   }
 },
 {
@@ -790,7 +869,7 @@
   "node_id": "node_56",
   "label": "Cosmo's Gotcha Day",
   "type": "event",
-  "description": "Technically Jon's, I insisted Jon get a dog after his transplant as an incentive to get up and move around and to have something to think about and care for outside of his own recovery. While once upon a time I had been quite afraid of dogs, I've come a long way and Cosmo has grown on me a lot.",
+  "description": "Cosmo is technically Jon's dog. I insisted Jon get a dog after his transplant as an incentive to get up and move around and to have something to think about and care for outside of his own recovery. While once upon a time I had been quite afraid of dogs, I've come a long way and Cosmo has grown on me a lot.",
   "date": {
     "$date": "2021-05-13T07:00:00.000Z"
   },
@@ -881,7 +960,7 @@
   },
   "media": {
     "link": "",
-    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551035472923.jpg_1551035490914.jpg",
+    "image": "1551036315075.jpg",
     "video": ""
   }
 },
@@ -915,7 +994,7 @@
   },
   "media": {
     "link": "",
-    "image": "",
+    "image": "Screenshot2024-04-162.25.34PM.jpg",
     "video": ""
   }
 },
@@ -1094,7 +1173,14 @@
     "$date": "1984-10-01T07:00:00.000Z"
   },
   "media": {
-    "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551036919010.jpg_1551036921963.jpg"
+    "image": "1551036921963.jpg",
+    "gallery": [
+      "IMG_2552.jpg",
+      "IMG_2539.jpg",
+      "2015-06-04T16.38.27.jpg",
+      "20181002_112654.jpg",
+      "20230904_092149.jpg"
+    ]
   }
 },
 {

@@ -3,6 +3,7 @@
 	import { base } from "$app/paths";
 	import nodeData from "$lib/data/personal.lifegraph-nodes.json";
 	import links from "$lib/data/personal.lifegraph-links.json";
+	import Modal from "$lib/Modal.svelte";
 	import { DateTime } from "luxon";
 	import scrollIntoView from "scroll-into-view-if-needed";
 	import { scaleLinear, scaleOrdinal } from "d3-scale";
@@ -52,6 +53,7 @@
 		m.dateString = m.dateLuxon.toLocaleString({month: "short", year: "numeric"});
 		return m;
 	}).sort((a,b)=> b.dateLuxon - a.dateLuxon);
+	let showModal = false;
 	let canvas;
 	let width = 500;
 	let height = 600;
@@ -61,7 +63,11 @@
 	let transform = d3.zoomIdentity;
 	let simulation, context;
 	let dpi = 1;
-	
+	let index = 0
+	let images = [""];
+	const next = () => {
+		index = (index + 1) % images.length
+	}
 	onMount(() => {
 		dpi = window.devicePixelRatio || 1;
 		context = canvas.getContext("2d");
@@ -121,6 +127,15 @@
 					media: activeNode.media
 				})
 			);
+			let linkspot = document.querySelector("div#linkspot button");
+			if (activeNode.media?.link || activeNode.media?.video || activeNode.media?.gallery) {
+				linkspot.classList.remove("hidden");
+			} else {
+				linkspot.classList.add("hidden");
+			}
+			if (activeNode.media.gallery) {
+				images = activeNode.media.gallery;
+			}
 			simulationUpdate();
 			let allButtons = document.querySelectorAll("section.timeline button");
 			allButtons.forEach((b) => b.classList.remove("violet"));
@@ -209,6 +224,7 @@
 		width = element.offsetWidth * dpi;
 		height = element.offsetHeight * dpi;
 	}
+	
 </script>
 
 <svelte:head>
@@ -229,7 +245,7 @@
 								<p>{event.dateString}</p>
 							</TimelineOppositeContent>
 							<TimelineSeparator>
-								<TimelineDot />
+								<TimelineDot style={`background-color: ${color("event")}; border-color: ${color("event")}`}/>
 								<TimelineConnector />
 							</TimelineSeparator>
 							<TimelineContent>
@@ -263,9 +279,46 @@
 					</div>
 				{/if}
 				<canvas use:fitToContainer bind:this={canvas} />
+				<div id="legend">
+					<div id="linkspot"><button class="hidden" on:click={() => (showModal = true)}>bonus content!</button></div>
+					<div class="legend-entry">
+						<div class="legend-circle" style={`background: ${color("pillar")}`}></div><h5>pillar</h5>
+					</div>
+					<div class="legend-entry">
+						<div class="legend-circle" style={`background: ${color("event")}`}></div><h5>event</h5>						
+					</div>
+					<div class="legend-entry">
+						<div class="legend-circle" style={`background: ${color("person")}`}></div><h5>person</h5>
+					</div>
+					<div class="legend-entry">
+						<div class="legend-circle" style={`background: ${color("location")}`}></div><h5>location</h5>
+					</div>
+				</div>
 			</div>	
 		</section>	
 	</div>
+	<Modal bind:showModal>
+		{#if activeNode.media}
+			{#if activeNode.media.video}
+				<video
+					controls
+					height={500} 
+					src={`${base}/images/${activeNode.media.video}`} />
+			{/if}
+			{#if activeNode.media.link}
+				<iframe
+					height={500}
+					width={800} 
+					src={activeNode.media.link} />
+			{/if}
+			{#if activeNode.media.gallery}
+				{#each [activeNode.media.gallery[index]] as src (index)}
+					<img class="gallery" src={`${base}/images/${src}`} alt="" />	
+				{/each}
+				<button id="next" on:click={next}>Next!</button>
+			{/if}
+		{/if}
+	</Modal>
 </div>
 <style>
 	h1 {
@@ -276,14 +329,14 @@
 		flex-direction: row;
 	}
 	section.timeline {
-		min-width: 200px;
+		min-width: 310px;
 		max-height: 75vh;
 		overflow-y: scroll;
 	}
 	section.timeline button {
 		background: none;
 		border: none;
-		width: 300px;
+		width: 275px;
 	}
 	section.timeline button p {
 		margin: 0;
@@ -294,7 +347,7 @@
 	div#nodeDetails {
 		position: absolute;
 		width: 45vw;
-		min-width: 300px;
+		min-width: 400px;
 		pointer-events: none;
 		border-radius: 20px;
 		background-color: rgba(250, 235, 215, 0.4);
@@ -309,5 +362,57 @@
 	}
 	div#nodeDetails h3 {
 		margin-top: 0;
+	}
+	div#legend {
+		display: flex;
+		flex-direction: row;
+		width: 500px;
+		float: right;
+	}
+	div#legend div#linkspot {
+		width: 140px;
+	}
+	div#legend div#linkspot button {
+		border: none;
+		background-color: transparent;
+		font-size: 14px;
+   		color: white;
+   		text-shadow:
+       2px 2px 0 #000,
+     -1px -1px 0 #000,  
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+       1px 1px 0 #000;		
+	    font-weight: 700;
+		background-image: url("./images/low-poly-grid-haikei.png");
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 30px;
+		border-radius: 15px;
+		margin-right: 10px;
+		padding: 0 10px;
+	}
+	div#legend div#linkspot button.hidden {
+		display: none;
+	}
+	div#legend div.legend-entry {
+		width: 75px;
+	}
+	div#legend div.legend-circle {
+		width: 10px;
+		height: 10px;
+		border-radius: 10px;
+		margin-bottom: 5px;
+	}
+	div#legend div.legend-entry h5 {
+		margin: 0;
+	}
+	img.gallery {
+		max-width: 50vw;
+		max-height: 65vh;
+	}
+	button#next {
+		position: absolute;
+		right: 15px;
 	}
 </style>
