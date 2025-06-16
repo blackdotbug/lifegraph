@@ -7,8 +7,7 @@
   "type": "pillar",
   "description": "Education has always been important to me, and has had great impacts on my life and how I define myself.",
   "media": {
-    "image": "IMG_3832.jpg",
-    "video": " "
+    "image": "IMG_3832.jpg"
   }
 },
 {
@@ -47,7 +46,7 @@
   "node_id": "node_04",
   "label": "identity",
   "type": "pillar",
-  "description": "It's really a neverending process trying to answer the question 'Who am I?'",
+  "description": "It's really a neverending process trying to answer the question 'Who am i?'",
   "media": {
     "image": "20231229_135632.jpg",
     "gallery": [
@@ -153,17 +152,7 @@
       "20181026_183308.jpg",
       "20191009_074038.jpg",
       "20230906_201401.jpg",
-      "20231022_141925.jpg",
-      "20250521_142747.jpg",
-      "20250503_210649.jpg",
-      "20250426_195632.jpg",
-      "20250406_142557.jpg",
-      "20241128_115503.jpg",
-      "20241019_135529.jpg",
-      "20240822_173819.jpg",
-      "20240810_155057.jpg",
-      "20240707_141136.jpg",
-      "20240707_154628.jpg"
+      "20231022_141925.jpg"
     ]
   }
 },
@@ -295,7 +284,7 @@
   },
   "media": {
     "link": "https://arc.net/l/quote/eedzplls",
-    "image": "Screenshot2024-04-161.26.36PM.jpg",
+    "image": "",
     "video": ""
   }
 },
@@ -357,6 +346,7 @@
     "$date": "1982-01-01T07:00:00.000Z"
   },
   "media": {
+    "link": "",
     "image": "USER_SCOPED_TEMP_DATA_MSGR_PHOTO_FOR_UPLOAD_1551036966396.jpg_1551036969835.jpg",
     "gallery": [
       "415BDEDC-EE99-497E-AE7C-F189A5EAEF5B.jpg"
@@ -406,7 +396,8 @@
   "type": "person",
   "description": "A crafting group I've been a member of for years.",
   "media": {
-    "image": "IMG_20190412_143325_821.jpg"
+    "image": "IMG_20190412_143325_821.jpg",
+    "link": "https://www.oregonlive.com/living/2013/03/from_knitting_to_needlework_or.html"
   }
 },
 {
@@ -418,7 +409,8 @@
   "type": "person",
   "description": "A bookbinder I worked part-time for during grad school. Taught me so much about book-making.",
   "media": {
-    "image": "received_377591236333595.jpg"
+    "image": "received_377591236333595.jpg",
+    "link": "https://bookcraftsonline.com/BC_faqs.html"
   }
 },
 {
@@ -467,6 +459,7 @@
     "$date": "2022-09-01T07:00:00.000Z"
   },
   "media": {
+    "link": "",
     "image": "20220914_094611.jpg",
     "gallery": [
       "image000001.jpg"
@@ -486,7 +479,7 @@
   },
   "media": {
     "link": "",
-    "image": "SmartSelect_20231229_093310_Chrome.jpg",
+    "image": "SmartSelect_20231229_092205_Chrome.jpg",
     "video": ""
   }
 },
@@ -793,6 +786,7 @@
     "$date": "2014-06-01T07:00:00.000Z"
   },
   "media": {
+    "link": "",
     "image": "2014-07-18T02.24.29.jpg",
     "gallery": [
       "2014-10-02T14.44.34.jpg",
@@ -1202,86 +1196,5 @@
   },
   "media": {
     "image": "20180918_101157.jpg"
-  }
-},
-{
-  "_id": {
-    "$oid": "6850812e46f6136f395a4583"
-  },
-  "node_id": "node_75",
-  "type": "event",
-  "label": "My Autism Diagnosis",
-  "description": "Despite (or with spite), I sought out an adult autism diagnosis which I (unsurprisingly) received.",
-  "date": {
-    "$date": "2025-06-14T08:00:00.000Z"
-  }
-},
-{
-  "_id": {
-    "$oid": "6850820046f6136f395a4584"
-  },
-  "node_id": "node_76",
-  "type": "event",
-  "label": "My Tattoo",
-  "description": "On the second anniversary of my cancer surgery, I completed my third and final session for my one and only tattoo. It adorns the surgery scar on my stomach and features star jasmine and ladybugs.",
-  "date": {
-    "$date": "2024-09-21T08:00:00.000Z"
-  },
-  "media": {
-    "image": "tattoo.jpg"
-  }
-},
-{
-  "_id": {
-    "$oid": "685082f746f6136f395a4585"
-  },
-  "node_id": "node_77",
-  "type": "event",
-  "label": "Trip to Paris",
-  "description": "For my birthday, my partner Russell took me to Paris and I enjoyed lots of good food, art, and moments from the movie Amelie.",
-  "date": {
-    "$date": "2024-09-01T08:00:00.000Z"
-  },
-  "media": {
-    "image": "IMG_9250.jpg",
-    "gallery": [
-      "IMG_9121.jpg",
-      "IMG_9136.jpg",
-      "IMG_9171.jpg",
-      "IMG_9208.jpg",
-      "IMG_9259.jpg",
-      "20240908_160847.jpg",
-      "20240907_162458.jpg",
-      "20240904_131624.jpg",
-      "20240904_131616.jpg",
-      "20240904_105934.jpg"
-    ]
-  }
-},
-{
-  "_id": {
-    "$oid": "6850833b46f6136f395a4586"
-  },
-  "node_id": "node_78",
-  "label": "Tea",
-  "type": "person",
-  "description": "One of my romantic partners.",
-  "media": {
-    "image": "tea.png"
-  }
-},
-{
-  "_id": {
-    "$oid": "6850a79e46f6136f395a4590"
-  },
-  "node_id": "node_79",
-  "type": "event",
-  "label": "The Northern Lights",
-  "description": "They came all the way down to Oregon! How cool is that?",
-  "date": {
-    "$date": "2024-05-10T08:00:00.000Z"
-  },
-  "media": {
-    "image": "20240510_231403.jpg"
   }
 }]
