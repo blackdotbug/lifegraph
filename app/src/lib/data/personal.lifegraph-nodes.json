@@ -1260,18 +1260,6 @@
 },
 {
   "_id": {
-    "$oid": "6850833b46f6136f395a4586"
-  },
-  "node_id": "node_78",
-  "label": "Tea",
-  "type": "person",
-  "description": "One of my romantic partners.",
-  "media": {
-    "image": "tea.jpg"
-  }
-},
-{
-  "_id": {
     "$oid": "6850a79e46f6136f395a4590"
   },
   "node_id": "node_79",

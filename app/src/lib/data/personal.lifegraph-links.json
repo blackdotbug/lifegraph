@@ -821,14 +821,6 @@
 },
 {
   "_id": {
-    "$oid": "6850984b46f6136f395a458c"
-  },
-  "source": "node_78",
-  "target": "node_35",
-  "description": "Tea is the most recent addition to my chosen family."
-},
-{
-  "_id": {
     "$oid": "68509a1846f6136f395a458d"
   },
   "source": "node_78",
