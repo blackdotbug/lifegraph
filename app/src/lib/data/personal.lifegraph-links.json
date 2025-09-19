@@ -821,14 +821,6 @@
 },
 {
   "_id": {
-    "$oid": "68509a1846f6136f395a458d"
-  },
-  "source": "node_78",
-  "target": "node_13",
-  "description": "I love that there's so many people in this town that overlap with me and all my weirdnesses."
-},
-{
-  "_id": {
     "$oid": "68509ba746f6136f395a458e"
   },
   "source": "node_77",
