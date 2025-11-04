@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 	import { base } from "$app/paths";
 	import nodeData from "$lib/data/personal.lifegraph-nodes.json";
@@ -18,7 +18,14 @@
 		forceCenter,
 		forceCollide,
 	} from "d3-force";
-	let d3 = {  
+	import type {
+		Simulation,
+		SimulationNodeDatum,
+		SimulationLinkDatum,
+	} from "d3-force";
+
+	// keep using the existing d3 helper object but type it as any to avoid retyping
+	const d3: any = {
 		zoom,
 		zoomIdentity,
 		scaleLinear,
@@ -43,97 +50,154 @@
 		TimelineContent,
 		TimelineOppositeContent
 	} from 'svelte-vertical-timeline';
-	$: nodes = nodeData.map(node => {
-		let linkCount = links.filter(f => f.target == node.node_id).length;
-		node.size = linkCount ? (linkCount*3)+4 : 4;
+	// --- Types for nodes & links (extend d3-force types) ---
+	type Media = { image?: string; video?: string; link?: string; gallery?: string[] };
+
+	interface RawNode {
+		_id: { $oid: string };
+		node_id: string;
+		label: string;
+		type: string;
+		description: string;
+		media: Media;
+		date?: { $date: string } | string;
+	}
+
+	interface Node extends SimulationNodeDatum {
+		node_id: string;
+		label: string;
+		type: string;
+		description: string;
+		media: Media;
+		date?: { $date: string } | string;
+		size: number;
+		dateLuxon?: any;
+		dateString?: string;
+	}
+
+	interface LinkDatum extends SimulationLinkDatum<Node> {
+		source: string | Node;
+		target: string | Node;
+		description?: string;
+	}
+
+	const rawNodes = nodeData as RawNode[];
+	const rawLinks = links as unknown as LinkDatum[];
+
+	let nodes: Node[] = rawNodes.map(n => {
+		const node: Node = { ...(n as any), size: 4 } as Node;
+		const linkCount = rawLinks.filter(f => (typeof f.target === 'string' ? f.target : (f.target as Node).node_id) == node.node_id).length;
+		node.size = linkCount ? (linkCount * 3) + 4 : 4;
 		return node;
-	})
-	$: events = nodeData.filter(f => f.type === "event").map(m => {
-		m.dateLuxon = DateTime.fromFormat(m.date.$date.split("T")[0], "yyyy-MM-dd");
-		m.dateString = m.dateLuxon.toLocaleString({month: "short", year: "numeric"});
-		return m;
-	}).sort((a,b)=> b.dateLuxon - a.dateLuxon);
+	});
+
+	let events: Node[] = rawNodes
+		.filter(f => f.type === "event")
+		.map(m => {
+			const mm = { ...(m as any) } as Node;
+			if (mm.date && typeof mm.date !== 'string' && (mm.date as any).$date) {
+				mm.dateLuxon = DateTime.fromFormat((mm.date as any).$date.split("T")[0], "yyyy-MM-dd");
+				mm.dateString = mm.dateLuxon.toLocaleString({ month: "short", year: "numeric" });
+			} else {
+				mm.dateLuxon = null;
+				mm.dateString = '';
+			}
+			return mm;
+		})
+		.sort((a, b) => (b.dateLuxon?.toMillis ? b.dateLuxon.toMillis() : 0) - (a.dateLuxon?.toMillis ? a.dateLuxon.toMillis() : 0));
+
 	let showModal = false;
-	let canvas;
+	let canvas: HTMLCanvasElement | null = null;
 	let width = 500;
 	let height = 600;
-	let activeNode = false;
-	const color = d3.scaleOrdinal(d3.schemeCategory10)
-	let showCard;
-	let transform = d3.zoomIdentity;
-	let simulation, context;
+	let activeNode: Node | null = null;
+	const color = d3.scaleOrdinal(d3.schemeCategory10);
+	let showCard: { id: string; nodeDescription?: string; linkDescriptions?: string[]; media?: Media } | null = null;
+	let transform: any = d3.zoomIdentity;
+	let simulation: Simulation<Node, LinkDatum> | null = null;
+	let context: CanvasRenderingContext2D | null = null;
 	let dpi = 1;
-	let index = 0
-	let images = [""];
+	let index = 0;
+	let images: string[] = [];
 	const next = () => {
 		index = (index + 1) % images.length
 	}
 	onMount(() => {
 		dpi = window.devicePixelRatio || 1;
+		if (!canvas) return;
 		context = canvas.getContext("2d");
+		if (!context) return;
 		resize();
-		simulation = d3
-		.forceSimulation(nodes)
-		.force(
-			"link",
-			d3
-			.forceLink(links)
-			.id((d) => d.node_id)
-			.distance(d => d.target.size * 2.5)
-		)
-		.force("charge", d3.forceManyBody().strength(-5))
-		.force("collide", d3.forceCollide(d => d.size))
-		.force("center", d3.forceCenter(width / 2, height / 2))
-		.on("tick", simulationUpdate);
+		// initialize simulation (use rawLinks which may reference node ids or node objects)
+		simulation = d3.forceSimulation(nodes) as Simulation<Node, LinkDatum>;
+		simulation
+			.force(
+				"link",
+				d3
+					.forceLink(rawLinks as any)
+					.id((d: Node) => d.node_id)
+					.distance((d: any) => (d.target as Node).size * 2.5)
+			)
+			.force("charge", d3.forceManyBody().strength(-5))
+			.force("collide", d3.forceCollide((d: Node) => d.size))
+			.force("center", d3.forceCenter(width / 2, height / 2))
+			.on("tick", simulationUpdate);
 
-		d3.select(context.canvas).on("click", (event) => {
-			const d = simulation.find(
-				transform.invertX(event.offsetX * dpi),
-				transform.invertY(event.offsetY * dpi),
-				50
-			);
+		if (context && simulation) {
+			d3.select(context.canvas).on("click", (event: any) => {
+				const d = simulation!.find(
+					transform.invertX(event.offsetX * dpi),
+					transform.invertY(event.offsetY * dpi),
+					50
+				);
 
-			setShowCard(d);
-		});
+				setShowCard(d ?? null);
+			});
 
-		d3.select(canvas)
-		.call(
-			d3
-			.drag()
-			.container(canvas)
-			.subject(dragsubject)
-			.on("start", dragstarted)
-			.on("drag", dragged)
-			.on("end", dragended)
-		)
-		.call(
-			d3
-			.zoom()
-			.scaleExtent([1 / 10, 8])
-			.on("zoom", zoomed)
-		);
+			// guard canvas when calling drag/zoom
+			if (canvas) {
+				const canvasSelection = d3.select(/** @type {any} */ (canvas));
+				canvasSelection
+					.call(
+						d3
+						.drag()
+						.container(/** @type {any} */ (canvas))
+						.subject(dragsubject)
+						.on("start", dragstarted)
+						.on("drag", dragged)
+						.on("end", dragended)
+					)
+					.call(
+						d3
+						.zoom()
+						.scaleExtent([1 / 10, 8])
+						.on("zoom", zoomed)
+					);
+			}
+		}
 	});
-	function setShowCard(node) {
-		if (node) activeNode = node;
-		else activeNode = false;
+	function setShowCard(node: Node | null) {
+		activeNode = node;
 		if (activeNode) {
 			showCard = JSON.parse(
 				JSON.stringify({ 
 					id: activeNode.label, 
 					nodeDescription: activeNode.description,
-					linkDescriptions: links
-						.filter(f => f.source.node_id == activeNode.node_id)
+					linkDescriptions: (rawLinks as LinkDatum[])
+						.filter(f => (typeof f.source === 'string' ? f.source : (f.source as Node).node_id) == activeNode!.node_id)
 						.map(m => m.description),
 					media: activeNode.media
 				})
 			);
 			let linkspot = document.querySelector("div#linkspot button");
-			if (activeNode.media?.link || activeNode.media?.video || activeNode.media?.gallery) {
-				linkspot.classList.remove("hidden");
-			} else {
-				linkspot.classList.add("hidden");
+			if (linkspot) {
+				if (activeNode.media?.link || activeNode.media?.video || activeNode.media?.gallery) {
+					linkspot.classList.remove("hidden");
+				} else {
+					linkspot.classList.add("hidden");
+				}
 			}
-			if (activeNode.media.gallery) {
+			if (activeNode.media?.gallery) {
 				images = activeNode.media.gallery;
 			}
 			simulationUpdate();
@@ -147,45 +211,52 @@
 		}
 	}
 	function simulationUpdate() {
-		context.save();
-		context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-		context.translate(transform.x, transform.y);
-		context.scale(transform.k, transform.k);
+		const ctx = /** @type {CanvasRenderingContext2D | null} */ (context);
+		if (!ctx) return;
+		ctx.save();
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+		ctx.translate(transform.x, transform.y);
+		ctx.scale(transform.k, transform.k);
 
-		links.forEach((d) => {
-			context.beginPath();
-			context.moveTo(d.source.x, d.source.y);
-			context.lineTo(d.target.x, d.target.y);
-			context.strokeStyle = "#000";
-			context.lineWidth = 1;
-			context.stroke();
-			context.globalAlpha = 1;
+		const linkList = rawLinks as LinkDatum[];
+		linkList.forEach((d) => {
+			const s = typeof d.source === 'string' ? nodes.find(n => n.node_id === d.source) : (d.source as Node);
+			const t = typeof d.target === 'string' ? nodes.find(n => n.node_id === d.target) : (d.target as Node);
+			if (!s || !t) return;
+			ctx.beginPath();
+			ctx.moveTo(s.x ?? 0, s.y ?? 0);
+			ctx.lineTo(t.x ?? 0, t.y ?? 0);
+			ctx.strokeStyle = "#000";
+			ctx.lineWidth = 1;
+			ctx.stroke();
+			ctx.globalAlpha = 1;
 		});
 
-		nodes.forEach((d, i) => {
-			context.beginPath();
-			context.arc(d.x, d.y, d.size, 0, 2 * Math.PI);
-			context.strokeStyle = activeNode && activeNode.node_id === d.node_id ? "violet" : "transparent";
-			context.lineWidth = 5;
-			context.stroke();
-			context.fillStyle = color(d.type);
-			context.fill();
+		const nodeList = nodes as Node[];
+		nodeList.forEach((d, i) => {
+			ctx.beginPath();
+			ctx.arc(d.x ?? 0, d.y ?? 0, d.size ?? 4, 0, 2 * Math.PI);
+			ctx.strokeStyle = activeNode && activeNode.node_id === d.node_id ? "violet" : "transparent";
+			ctx.lineWidth = 5;
+			ctx.stroke();
+			ctx.fillStyle = color(d.type);
+			ctx.fill();
 		});
-		context.restore();
+		ctx.restore();
 	}
 
-	function zoomed(currentEvent) {
+	function zoomed(currentEvent: any) {
 		transform = currentEvent.transform;
 		simulationUpdate();
 	}
 
 	// Use the d3-force simulation to locate the node
-	function dragsubject(currentEvent) {
-		const node = simulation.find(
+	function dragsubject(currentEvent: any): Node | undefined {
+		const node = simulation!.find(
 			transform.invertX(currentEvent.x * dpi),
 			transform.invertY(currentEvent.y * dpi),
 			50
-		);
+		) as Node | undefined;
 		if (node) {
 			node.x = transform.applyX(node.x);
 			node.y = transform.applyY(node.y);
@@ -193,27 +264,28 @@
 		return node;
 	}
 
-	function dragstarted(currentEvent) {
-		if (!currentEvent.active) simulation.alphaTarget(0.3).restart();
+	function dragstarted(currentEvent: any) {
+		if (!currentEvent.active) simulation!.alphaTarget(0.3).restart();
 		currentEvent.subject.fx = transform.invertX(currentEvent.subject.x);
 		currentEvent.subject.fy = transform.invertY(currentEvent.subject.y);
 	}
 
-	function dragged(currentEvent) {
+	function dragged(currentEvent: any) {
 		currentEvent.subject.fx = transform.invertX(currentEvent.x);
 		currentEvent.subject.fy = transform.invertY(currentEvent.y);
 	}
 
-	function dragended(currentEvent) {
-		if (!currentEvent.active) simulation.alphaTarget(0);
+	function dragended(currentEvent: any) {
+		if (!currentEvent.active) simulation!.alphaTarget(0);
 		currentEvent.subject.fx = null;
 		currentEvent.subject.fy = null;
 	}
 
 	function resize() {
+		if (!canvas) return;
 		({ width, height } = canvas);
 	}
-	function fitToContainer(element) {
+	function fitToContainer(element: HTMLCanvasElement) {
 		dpi = window.devicePixelRatio || 1;
 		// Make it visually fill the positioned parent
 		element.style.width = "100%";
@@ -258,10 +330,10 @@
 		</section>
 		<section class="viz">
 			<div on:resize={resize} class="container">
-				{#if activeNode}
+				{#if showCard}
 					<div id="nodeDetails">
 						{#if showCard.media?.image}
-							<img src={`${base}/images/${showCard.media.image}`}/>
+							<img src={`${base}/images/${showCard.media.image}`} alt={showCard?.id || ''}/>
 						{/if}
 					<h3>{showCard.id}</h3>
 					{#if showCard.nodeDescription}
@@ -298,22 +370,26 @@
 		</section>	
 	</div>
 	<Modal bind:showModal>
-		{#if activeNode.media}
+		{#if activeNode && activeNode.media}
 			{#if activeNode.media.video}
-				<video
-					controls
-					height={500} 
-					src={`${base}/images/${activeNode.media.video}`} />
-			{/if}
+					<video
+						controls
+						height={500} 
+						src={`${base}/images/${activeNode.media.video}`}>
+						<!-- captions track (if available) -->
+						<track kind="captions" />
+					</video>
+				{/if}
 			{#if activeNode.media.link}
-				<iframe
-					height={500}
-					width={800} 
-					src={activeNode.media.link} />
-			{/if}
+					<iframe
+						title={activeNode.label || 'embedded content'}
+						height={500}
+						width={800} 
+						src={activeNode.media.link} />
+				{/if}
 			{#if activeNode.media.gallery}
 				{#each [activeNode.media.gallery[index]] as src (index)}
-					<img class="gallery" src={`${base}/images/${src}`} alt="" />	
+					<img class="gallery" src={`${base}/images/${src}`} alt="" />
 				{/each}
 				<button id="next" on:click={next}>Next!</button>
 			{/if}
@@ -322,97 +398,146 @@
 </div>
 <style>
 	h1 {
-		width: 100%;
-	}
-	div.flex-container {
-		display: flex;
-		flex-direction: row;
-	}
-	section.timeline {
-		min-width: 310px;
-		max-height: 75vh;
-		overflow-y: scroll;
-	}
-	section.timeline button {
-		background: none;
-		border: none;
-		width: 275px;
-	}
-	section.timeline button p {
-		margin: 0;
-	}
-	div.container {
-		height: 75vh;
-	}
-	div#nodeDetails {
-		position: absolute;
-		width: 45vw;
-		min-width: 400px;
-		pointer-events: none;
-		border-radius: 20px;
-		background-color: rgba(250, 235, 215, 0.4);
-		padding: 20px;
-	}
-	div#nodeDetails img {
-		max-width: 300px;
-		max-height: 300px;
-		border-radius: 20px;
-		float: left;
-		margin: 0 20px 20px 0;
-	}
-	div#nodeDetails h3 {
-		margin-top: 0;
-	}
-	div#legend {
-		display: flex;
-		flex-direction: row;
-		width: 500px;
-		float: right;
-	}
-	div#legend div#linkspot {
-		width: 140px;
-	}
-	div#legend div#linkspot button {
-		border: none;
-		background-color: transparent;
-		font-size: 14px;
-   		color: white;
-   		text-shadow:
+ 		width: 100%;
+ 	}
+ 	div.flex-container {
+ 		display: flex;
+ 		flex-direction: row;
+ 		gap: 1rem;
+ 	}
+ 	section.timeline {
+ 		min-width: 310px;
+ 		max-height: 75vh;
+ 		overflow-y: scroll;
+ 	}
+ 	section.timeline button {
+ 		background: none;
+ 		border: none;
+ 		width: 275px;
+ 	}
+ 	section.timeline button p {
+ 		margin: 0;
+ 	}
+ 	div.container {
+ 		height: 75vh;
+ 		position: relative;
+ 	}
+ 	div#nodeDetails {
+ 		position: absolute;
+ 		width: 45vw;
+ 		min-width: 400px;
+ 		pointer-events: none;
+ 		border-radius: 20px;
+ 		background-color: rgba(250, 235, 215, 0.4);
+ 		padding: 20px;
+ 		z-index: 5;
+ 	}
+ 	div#nodeDetails img {
+ 		max-width: 300px;
+ 		max-height: 300px;
+ 		border-radius: 20px;
+ 		float: left;
+ 		margin: 0 20px 20px 0;
+ 	}
+ 	div#nodeDetails h3 {
+ 		margin-top: 0;
+ 	}
+ 	div#legend {
+ 		display: flex;
+ 		flex-direction: row;
+ 		width: 500px;
+ 		float: right;
+ 		align-items: center;
+ 		gap: 0.5rem;
+ 	}
+ 	div#legend div#linkspot {
+ 		width: 140px;
+ 	}
+ 	div#legend div#linkspot button {
+ 		border: none;
+ 		background-color: transparent;
+ 		font-size: 14px;
+   	   color: white;
+   	   text-shadow:
        2px 2px 0 #000,
      -1px -1px 0 #000,  
       1px -1px 0 #000,
       -1px 1px 0 #000,
-       1px 1px 0 #000;		
-	    font-weight: 700;
-		background-image: url("/images/low-poly-grid-haikei.png");
-		background-size: cover;
-		background-repeat: no-repeat;
-		height: 30px;
-		border-radius: 15px;
-		margin-right: 10px;
-		padding: 0 10px;
-	}
-	div#legend div#linkspot button.hidden {
-		display: none;
-	}
-	div#legend div.legend-entry {
-		width: 75px;
-	}
-	div#legend div.legend-circle {
-		width: 10px;
-		height: 10px;
-		border-radius: 10px;
-		margin-bottom: 5px;
-	}
-	div#legend div.legend-entry h5 {
-		margin: 0;
-	}
-	img.gallery {
-		max-width: 50vw;
-		max-height: 65vh;
-	}
-	button#next {
-		position: absolute;
-		right: 15px;
-	}
+       1px 1px 0 #000;   
+    	font-weight: 700;
+ 		background-image: url("/images/low-poly-grid-haikei.png");
+ 		background-size: cover;
+ 		background-repeat: no-repeat;
+ 		height: 30px;
+ 		border-radius: 15px;
+ 		margin-right: 10px;
+ 		padding: 0 10px;
+ 	}
+ 	div#legend div#linkspot button.hidden {
+ 		display: none;
+ 	}
+ 	div#legend div.legend-entry {
+ 		width: 75px;
+ 	}
+ 	div#legend div.legend-circle {
+ 		width: 10px;
+ 		height: 10px;
+ 		border-radius: 10px;
+ 		margin-bottom: 5px;
+ 	}
+ 	div#legend div.legend-entry h5 {
+ 		margin: 0;
+ 	}
+ 	img.gallery {
+ 		max-width: 50vw;
+ 		max-height: 65vh;
+ 	}
+ 	button#next {
+ 		position: absolute;
+ 		right: 15px;
+ 	}
+
+ 	/* Mobile responsive overrides */
+ 	@media (max-width: 768px) {
+ 		div.flex-container {
+ 			flex-direction: column;
+ 		}
+ 		section.timeline {
+ 			min-width: auto;
+ 			max-height: 40vh;
+ 			overflow-y: auto;
+ 			width: 100%;
+ 		}
+ 		section.timeline button {
+ 			width: 100%;
+ 			text-align: left;
+ 		}
+ 		div.container {
+ 			height: 55vh;
+ 			width: 100%;
+ 		}
+ 		div#nodeDetails {
+ 			position: relative;
+ 			width: calc(100% - 2rem);
+ 			min-width: unset;
+ 			margin: 0.5rem auto;
+ 			pointer-events: auto;
+ 		}
+ 		div#nodeDetails img {
+ 			max-width: 40vw;
+ 			float: none;
+ 			display: block;
+ 			margin: 0 auto 1rem;
+ 		}
+ 		div#legend {
+ 			width: 100%;
+ 			float: none;
+ 			flex-wrap: wrap;
+ 			justify-content: flex-start;
+ 		}
+ 		div#legend div.legend-entry {
+ 			width: auto;
+ 			margin-right: 1rem;
+ 		}
+ 	}
 </style>
