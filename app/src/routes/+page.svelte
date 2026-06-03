@@ -30,12 +30,10 @@
 	};
 	import Timeline from '$lib/Timeline.svelte';
 
-	// Tolerates both the legacy Mongo shape ({date: {$date: "...T..."}}) and the
-	// normalized shape ({date: "yyyy-MM-dd"}) so it works before and after Phase 5.
+	// Events store date as a normalized "yyyy-MM-dd" string.
 	/** @param {any} n */
 	function getDateOnly(n) {
-		const d = n.date?.$date ?? n.date;
-		return typeof d === 'string' ? d.split('T')[0] : d;
+		return n.date;
 	}
 
 	// IMPORTANT: `nodes` and `simLinks` are plain consts, NOT $state/$derived.
