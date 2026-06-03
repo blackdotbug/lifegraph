@@ -64,12 +64,12 @@
 	--accent: #3a2277;
 	--selected: #e0a52e;
 
-	/* User-picked: #818738 olive, #DB231C red, #3A2277 indigo, #93B3B7 steel.
-	   Steel darkened (#5F858B) per note; olive on big pillars, indigo on people. */
+	/* User-picked: #818738 olive, #DB231C red, #3A2277 indigo, #8B4B33 rust.
+	   Olive on big pillars, indigo on people, rust on locations. */
 	--type-pillar: #818738;
 	--type-event: #db231c;
 	--type-person: #3a2277;
-	--type-location: #5f858b;
+	--type-location: #8b4b33;
 
 	--edge: rgba(45, 37, 53, 0.2);
 	--node-glow: 0;
