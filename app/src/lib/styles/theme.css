@@ -41,7 +41,7 @@
 	--node-glow: 0;
 
 	--wallpaper: url('/circles.webp');
-	--wp-scrim: rgba(235, 234, 229, 0.8);
+	--wp-scrim: transparent;
 	--wp-size: 440px;
 
 	--radius: 14px;
@@ -71,7 +71,7 @@
 	--node-glow: 0;
 
 	--wallpaper: url('/mushrooms.jpg');
-	--wp-scrim: rgba(244, 242, 234, 0.82);
+	--wp-scrim: transparent;
 	--wp-size: 420px;
 
 	--radius: 14px;

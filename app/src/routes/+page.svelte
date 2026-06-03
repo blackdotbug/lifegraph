@@ -128,6 +128,16 @@
 					.scaleExtent([1 / 10, 8])
 					.on('zoom', zoomed)
 			);
+
+		// The canvas is drawn imperatively and only repaints on simulation ticks,
+		// so once the layout settles a theme change wouldn't recolor the nodes.
+		// Repaint whenever the active theme (data-theme on <html>) changes.
+		const themeObserver = new MutationObserver(() => simulationUpdate());
+		themeObserver.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-theme']
+		});
+		return () => themeObserver.disconnect();
 	});
 	/** @param {any} node */
 	function setShowCard(node) {

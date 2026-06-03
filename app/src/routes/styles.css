@@ -7,11 +7,10 @@ body {
 	color: var(--text);
 	background-color: var(--bg);
 	/* The chosen tile as soft wallpaper: a translucent scrim mutes it so content stays legible. */
-	background-image: linear-gradient(var(--wp-scrim, transparent), var(--wp-scrim, transparent)),
+	background-image:
+		linear-gradient(var(--wp-scrim, transparent), var(--wp-scrim, transparent)),
 		var(--wallpaper, none);
-	background-size:
-		auto,
-		var(--wp-size, 440px);
+	background-size: auto, var(--wp-size, 440px);
 	background-repeat: repeat, repeat;
 	background-attachment: fixed, fixed;
 }
