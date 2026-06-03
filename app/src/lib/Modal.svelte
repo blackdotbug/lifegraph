@@ -1,29 +1,32 @@
 <script>
-	export let showModal; // boolean
+	let { showModal = $bindable(), children } = $props();
 
-	let dialog; // HTMLDialogElement
+	let dialog = $state(); // HTMLDialogElement
 
-	$: if (dialog && showModal) dialog.showModal();
+	$effect(() => {
+		if (dialog && showModal) dialog.showModal();
+	});
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
 	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
+	onclose={() => (showModal = false)}
+	onclick={(e) => {
+		if (e.target === dialog) dialog.close();
+	}}
 >
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div on:click|stopPropagation>
-		<slot />
+	<!-- Clicks on inner content keep e.target !== dialog, so they don't close it. -->
+	<div>
+		{@render children?.()}
 		<hr />
-		<!-- svelte-ignore a11y-autofocus -->
-		<button autofocus on:click={() => dialog.close()}>close</button>
+		<!-- svelte-ignore a11y_autofocus -->
+		<button autofocus onclick={() => dialog.close()}>close</button>
 	</div>
 </dialog>
 
 <style>
 	dialog {
-        height: 75vh;
+		height: 75vh;
 		border-radius: 0.2em;
 		border: none;
 		padding: 0;

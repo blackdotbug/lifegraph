@@ -1,15 +1,20 @@
 <script>
 	import './styles.css';
+
+	let { children } = $props();
 </script>
 
 <div class="app">
-
 	<main>
-		<slot />
+		{@render children?.()}
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>
+			Heather Bree's Lifegraph &middot; <a href="https://github.com/blackdotbug/lifegraph"
+				>source on GitHub</a
+			>
+		</p>
 	</footer>
 </div>
 
