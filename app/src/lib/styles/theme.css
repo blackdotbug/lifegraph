@@ -65,10 +65,10 @@
 	--selected: #e0a52e;
 
 	/* User-picked: #3A2277 indigo, #DB231C red, #445F3E forest, #93B3B7 steel.
-	   Steel darkened (#5F858B) per note; indigo on big pillars, red on the many events. */
-	--type-pillar: #3a2277;
+	   Steel darkened (#5F858B) per note; forest on big pillars, indigo on people. */
+	--type-pillar: #445f3e;
 	--type-event: #db231c;
-	--type-person: #445f3e;
+	--type-person: #3a2277;
 	--type-location: #5f858b;
 
 	--edge: rgba(45, 37, 53, 0.2);
