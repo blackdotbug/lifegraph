@@ -3,8 +3,11 @@
 	"configurations": [
 		{
 			"name": "lifegraph-dev",
-			"runtimeExecutable": "sh",
-			"runtimeArgs": ["-c", "cd app && npm run dev -- --port 5173"],
+			"runtimeExecutable": "bash",
+			"runtimeArgs": [
+				"-lc",
+				"cd /Users/heatherbree/Documents/repos/lifegraph/app; export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm use 22 >/dev/null; exec npm run dev -- --port 5173"
+			],
 			"port": 5173
 		}
 	]
