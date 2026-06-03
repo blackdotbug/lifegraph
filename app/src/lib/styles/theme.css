@@ -25,19 +25,21 @@
 
 	--bg: #ebeae5;
 	--surface: rgba(251, 250, 246, 0.95);
-	--text: #3a4149;
+	--text: #36404a;
 	--muted: #7c8086;
 	--border: #dad8cf;
 
-	--accent: #ee5436;
-	--selected: #2a333d;
+	--accent: #f54623;
+	--selected: #1b2730;
 
-	--type-pillar: #e0882e;
-	--type-event: #ee5436;
-	--type-person: #5e8294;
-	--type-location: #3c4a57;
+	/* User-picked: #85ACBC steel, #F54623 coral, #455057 slate, #F9B56B amber.
+	   Lightest (amber) on big pillars; highest-contrast (coral) on the many events. */
+	--type-pillar: #f9b56b;
+	--type-event: #f54623;
+	--type-person: #455057;
+	--type-location: #85acbc;
 
-	--edge: rgba(58, 65, 73, 0.18);
+	--edge: rgba(54, 64, 74, 0.18);
 	--node-glow: 0;
 
 	--wallpaper: url('/circles.webp');
@@ -55,19 +57,21 @@
 
 	--bg: #f4f2ea;
 	--surface: rgba(255, 255, 255, 0.94);
-	--text: #40392a;
-	--muted: #837c68;
-	--border: #e4decc;
+	--text: #2d2535;
+	--muted: #7c7588;
+	--border: #e2dccb;
 
-	--accent: #b5482e;
-	--selected: #2e3a1e;
+	--accent: #3a2277;
+	--selected: #e0a52e;
 
-	--type-pillar: #7e5236;
-	--type-event: #c24e36;
-	--type-person: #6e7a45;
-	--type-location: #c99043;
+	/* User-picked: #3A2277 indigo, #DB231C red, #445F3E forest, #93B3B7 steel.
+	   Steel darkened (#5F858B) per note; indigo on big pillars, red on the many events. */
+	--type-pillar: #3a2277;
+	--type-event: #db231c;
+	--type-person: #445f3e;
+	--type-location: #5f858b;
 
-	--edge: rgba(64, 57, 42, 0.18);
+	--edge: rgba(45, 37, 53, 0.2);
 	--node-glow: 0;
 
 	--wallpaper: url('/mushrooms.jpg');
