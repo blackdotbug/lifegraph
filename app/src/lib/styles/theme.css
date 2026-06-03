@@ -1,0 +1,46 @@
+/* Fonts (self-hosted via @fontsource) */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+
+/*
+ * Design tokens — the "Mushrooms" room. An earthy, botanical companion to the
+ * portfolio (justheatherbree.com): its own vibe, not a match. The wallpaper tile
+ * (src/lib/assets/mushrooms.jpg) is applied to the .app wrapper in +layout.svelte
+ * so Vite resolves the URL with the production base path. Node colors are the
+ * user's hand-picked palette. The whole system is token-driven, so adding another
+ * room later is just another token block.
+ */
+
+:root {
+	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	--bg: #f4f2ea;
+	--surface: #fffdf8;
+	--text: #2d2535;
+	--muted: #7c7588;
+	--border: #e2dccb;
+
+	--accent: #3a2277;
+	--selected: #e0a52e;
+
+	/* User-picked: #818738 olive, #DB231C red, #3A2277 indigo, #8B4B33 rust.
+	   Olive on big pillars, indigo on people, rust on locations. */
+	--type-pillar: #818738;
+	--type-event: #db231c;
+	--type-person: #3a2277;
+	--type-location: #8b4b33;
+
+	--edge: rgba(45, 37, 53, 0.2);
+	--node-glow: 0;
+
+	--wp-size: 420px;
+
+	--radius: 14px;
+	--shadow: 0 6px 24px rgba(64, 57, 42, 0.14);
+}

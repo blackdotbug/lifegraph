@@ -86,11 +86,11 @@
 		margin: 0;
 	}
 	li.timeline-item.active .dot {
-		background-color: violet;
-		border-color: violet;
+		background-color: var(--selected);
+		border-color: var(--selected);
 	}
 	li.timeline-item.active .content button {
-		background-color: rgba(238, 130, 238, 0.25);
+		background-color: color-mix(in srgb, var(--selected) 22%, transparent);
 		font-weight: 700;
 	}
 </style>

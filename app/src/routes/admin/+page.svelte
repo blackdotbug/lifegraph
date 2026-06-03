@@ -196,132 +196,148 @@
 	<title>Lifegraph Admin</title>
 </svelte:head>
 
-<h1>Lifegraph Admin</h1>
-<p class="hint">
-	Local-only editor. Changes write directly to the data JSON files. Commit and rebuild to deploy.
-</p>
+<div class="sheet">
+	<h1>Lifegraph Admin</h1>
+	<p class="hint">
+		Local-only editor. Changes write directly to the data JSON files. Commit and rebuild to deploy.
+	</p>
 
-{#if errorMsg}
-	<p class="msg error">{errorMsg}</p>
-{:else if message}
-	<p class="msg ok">{message}</p>
-{/if}
+	{#if errorMsg}
+		<p class="msg error">{errorMsg}</p>
+	{:else if message}
+		<p class="msg ok">{message}</p>
+	{/if}
 
-{#if loading}
-	<p>Loading…</p>
-{:else}
-	<div class="cols">
-		<!-- NODES -->
-		<section>
-			<h2>Nodes ({nodes.length})</h2>
+	{#if loading}
+		<p>Loading…</p>
+	{:else}
+		<div class="cols">
+			<!-- NODES -->
+			<section>
+				<h2>Nodes ({nodes.length})</h2>
 
-			<form class="card" onsubmit={(e) => (e.preventDefault(), saveNode())}>
-				<h3>{nodeForm.node_id ? `Edit ${nodeForm.node_id}` : 'New node'}</h3>
-				<label>Label<input bind:value={nodeForm.label} required /></label>
-				<label>
-					Type
-					<select bind:value={nodeForm.type}>
-						{#each TYPES as t}
-							<option value={t}>{t}</option>
-						{/each}
-					</select>
-				</label>
-				{#if nodeForm.type === 'event'}
-					<label>Date<input type="date" bind:value={nodeForm.date} /></label>
-				{/if}
-				<label>Description<textarea bind:value={nodeForm.description} rows="3"></textarea></label>
-				<fieldset>
-					<legend>Media</legend>
-					<label>Image<input bind:value={nodeForm.media.image} placeholder="filename.jpg" /></label>
-					<label>Video<input bind:value={nodeForm.media.video} placeholder="filename.mp4" /></label>
-					<label>Link<input bind:value={nodeForm.media.link} placeholder="https://…" /></label>
+				<form class="card" onsubmit={(e) => (e.preventDefault(), saveNode())}>
+					<h3>{nodeForm.node_id ? `Edit ${nodeForm.node_id}` : 'New node'}</h3>
+					<label>Label<input bind:value={nodeForm.label} required /></label>
 					<label>
-						Gallery (one filename per line)
-						<textarea bind:value={nodeForm.media.gallery} rows="3"></textarea>
+						Type
+						<select bind:value={nodeForm.type}>
+							{#each TYPES as t}
+								<option value={t}>{t}</option>
+							{/each}
+						</select>
 					</label>
-				</fieldset>
-				<div class="actions">
-					<button type="submit">{nodeForm.node_id ? 'Save' : 'Add'} node</button>
-					{#if nodeForm.node_id}
-						<button type="button" onclick={resetNodeForm}>Cancel</button>
+					{#if nodeForm.type === 'event'}
+						<label>Date<input type="date" bind:value={nodeForm.date} /></label>
 					{/if}
-				</div>
-			</form>
+					<label>Description<textarea bind:value={nodeForm.description} rows="3"></textarea></label>
+					<fieldset>
+						<legend>Media</legend>
+						<label
+							>Image<input bind:value={nodeForm.media.image} placeholder="filename.jpg" /></label
+						>
+						<label
+							>Video<input bind:value={nodeForm.media.video} placeholder="filename.mp4" /></label
+						>
+						<label>Link<input bind:value={nodeForm.media.link} placeholder="https://…" /></label>
+						<label>
+							Gallery (one filename per line)
+							<textarea bind:value={nodeForm.media.gallery} rows="3"></textarea>
+						</label>
+					</fieldset>
+					<div class="actions">
+						<button type="submit">{nodeForm.node_id ? 'Save' : 'Add'} node</button>
+						{#if nodeForm.node_id}
+							<button type="button" onclick={resetNodeForm}>Cancel</button>
+						{/if}
+					</div>
+				</form>
 
-			<ul class="list">
-				{#each sortedNodes as n (n.node_id)}
-					<li>
-						<span class="tag {n.type}">{n.type}</span>
-						<span class="label">{n.label}</span>
-						<span class="id">{n.node_id}</span>
-						<span class="row-actions">
-							<button type="button" onclick={() => editNode(n)}>edit</button>
-							<button type="button" class="danger" onclick={() => deleteNode(n)}>del</button>
-						</span>
-					</li>
-				{/each}
-			</ul>
-		</section>
+				<ul class="list">
+					{#each sortedNodes as n (n.node_id)}
+						<li>
+							<span class="tag {n.type}">{n.type}</span>
+							<span class="label">{n.label}</span>
+							<span class="id">{n.node_id}</span>
+							<span class="row-actions">
+								<button type="button" onclick={() => editNode(n)}>edit</button>
+								<button type="button" class="danger" onclick={() => deleteNode(n)}>del</button>
+							</span>
+						</li>
+					{/each}
+				</ul>
+			</section>
 
-		<!-- LINKS -->
-		<section>
-			<h2>Links ({links.length})</h2>
+			<!-- LINKS -->
+			<section>
+				<h2>Links ({links.length})</h2>
 
-			<form class="card" onsubmit={(e) => (e.preventDefault(), saveLink())}>
-				<h3>{linkEditIndex === null ? 'New link' : `Edit link #${linkEditIndex}`}</h3>
-				<label>
-					Source
-					<select bind:value={linkForm.source} required>
-						<option value="" disabled>— pick —</option>
-						{#each nodeOptions as n (n.node_id)}
-							<option value={n.node_id}>{n.label} ({n.type})</option>
-						{/each}
-					</select>
-				</label>
-				<label>
-					Target
-					<select bind:value={linkForm.target} required>
-						<option value="" disabled>— pick —</option>
-						{#each nodeOptions as n (n.node_id)}
-							<option value={n.node_id}>{n.label} ({n.type})</option>
-						{/each}
-					</select>
-				</label>
-				<label>Description<textarea bind:value={linkForm.description} rows="2"></textarea></label>
-				<div class="actions">
-					<button type="submit">{linkEditIndex === null ? 'Add' : 'Save'} link</button>
-					{#if linkEditIndex !== null}
-						<button type="button" onclick={resetLinkForm}>Cancel</button>
-					{/if}
-				</div>
-			</form>
+				<form class="card" onsubmit={(e) => (e.preventDefault(), saveLink())}>
+					<h3>{linkEditIndex === null ? 'New link' : `Edit link #${linkEditIndex}`}</h3>
+					<label>
+						Source
+						<select bind:value={linkForm.source} required>
+							<option value="" disabled>— pick —</option>
+							{#each nodeOptions as n (n.node_id)}
+								<option value={n.node_id}>{n.label} ({n.type})</option>
+							{/each}
+						</select>
+					</label>
+					<label>
+						Target
+						<select bind:value={linkForm.target} required>
+							<option value="" disabled>— pick —</option>
+							{#each nodeOptions as n (n.node_id)}
+								<option value={n.node_id}>{n.label} ({n.type})</option>
+							{/each}
+						</select>
+					</label>
+					<label>Description<textarea bind:value={linkForm.description} rows="2"></textarea></label>
+					<div class="actions">
+						<button type="submit">{linkEditIndex === null ? 'Add' : 'Save'} link</button>
+						{#if linkEditIndex !== null}
+							<button type="button" onclick={resetLinkForm}>Cancel</button>
+						{/if}
+					</div>
+				</form>
 
-			<ul class="list">
-				{#each links as l, i (i)}
-					<li>
-						<span class="label">{nodeLabel(l.source)} → {nodeLabel(l.target)}</span>
-						<span class="row-actions">
-							<button type="button" onclick={() => editLink(i)}>edit</button>
-							<button type="button" class="danger" onclick={() => deleteLink(i)}>del</button>
-						</span>
-					</li>
-				{/each}
-			</ul>
-		</section>
-	</div>
-{/if}
+				<ul class="list">
+					{#each links as l, i (i)}
+						<li>
+							<span class="label">{nodeLabel(l.source)} → {nodeLabel(l.target)}</span>
+							<span class="row-actions">
+								<button type="button" onclick={() => editLink(i)}>edit</button>
+								<button type="button" class="danger" onclick={() => deleteLink(i)}>del</button>
+							</span>
+						</li>
+					{/each}
+				</ul>
+			</section>
+		</div>
+	{/if}
+</div>
 
 <style>
+	/* The whole tool sits on one opaque "sheet" so it stays legible over the
+	   full-strength wallpaper, which shows in the margins. */
+	.sheet {
+		background: #fbf9f3;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+		padding: 1.5rem 1.75rem;
+	}
 	h1 {
 		text-align: left;
+		margin-top: 0;
 	}
 	.hint {
-		color: #555;
+		color: var(--muted);
 		margin-top: -0.5rem;
 	}
 	.msg {
 		padding: 0.5rem 0.75rem;
-		border-radius: 6px;
+		border-radius: 8px;
 		font-weight: 600;
 	}
 	.msg.ok {
@@ -342,9 +358,9 @@
 		min-width: 0;
 	}
 	.card {
-		background: rgba(255, 255, 255, 0.6);
-		border: 1px solid #ccd;
-		border-radius: 10px;
+		background: transparent;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
 		padding: 1rem;
 		margin-bottom: 1rem;
 		display: flex;
@@ -360,18 +376,21 @@
 		font-size: 0.85rem;
 		font-weight: 600;
 		gap: 0.2rem;
+		color: var(--text);
 	}
 	input,
 	select,
 	textarea {
 		font: inherit;
 		padding: 0.35rem 0.5rem;
-		border: 1px solid #bbc;
+		border: 1px solid var(--border);
 		border-radius: 6px;
+		background: #fff;
+		color: var(--text);
 		font-weight: 400;
 	}
 	fieldset {
-		border: 1px solid #ccd;
+		border: 1px solid var(--border);
 		border-radius: 8px;
 		display: flex;
 		flex-direction: column;
@@ -387,10 +406,17 @@
 	}
 	button {
 		cursor: pointer;
-		border: 1px solid #99a;
+		border: 1px solid var(--border);
 		background: #fff;
+		color: var(--text);
 		border-radius: 6px;
 		padding: 0.35rem 0.75rem;
+	}
+	button[type='submit'] {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+		font-weight: 600;
 	}
 	button.danger {
 		border-color: #d99;
@@ -408,14 +434,14 @@
 		align-items: center;
 		gap: 0.5rem;
 		padding: 0.3rem 0.4rem;
-		border-bottom: 1px solid #dde;
+		border-bottom: 1px solid var(--border);
 	}
 	.list .label {
 		flex: 1;
 		min-width: 0;
 	}
 	.list .id {
-		color: #889;
+		color: var(--muted);
 		font-size: 0.75rem;
 		font-family: monospace;
 	}
@@ -427,24 +453,26 @@
 		padding: 0.15rem 0.5rem;
 		font-size: 0.8rem;
 	}
+	/* Type chips reuse the graph's node colors. */
 	.tag {
 		font-size: 0.7rem;
 		font-weight: 700;
-		padding: 0.1rem 0.4rem;
-		border-radius: 4px;
+		padding: 0.1rem 0.45rem;
+		border-radius: 999px;
 		text-transform: uppercase;
-		background: #eef;
+		color: #fff;
+		background: var(--muted);
 	}
 	.tag.pillar {
-		background: #ffe0b2;
+		background: var(--type-pillar);
 	}
 	.tag.event {
-		background: #bbdefb;
+		background: var(--type-event);
 	}
 	.tag.person {
-		background: #c8e6c9;
+		background: var(--type-person);
 	}
 	.tag.location {
-		background: #f8bbd0;
+		background: var(--type-location);
 	}
 </style>
