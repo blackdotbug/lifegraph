@@ -7,15 +7,14 @@
 
 	// --- TEMPORARY theme previewer (remove once a theme is chosen) ---
 	const THEMES = [
-		{ id: 'morris-parlor', label: 'Morris Parlor' },
-		{ id: 'morris-nightshade', label: 'Morris Nightshade' },
-		{ id: 'bright-atelier', label: 'Bright Atelier' }
+		{ id: 'circles', label: 'Circles' },
+		{ id: 'mushrooms', label: 'Mushrooms' }
 	];
-	let theme = $state('morris-parlor');
+	let theme = $state('circles');
 
 	onMount(() => {
 		const fromUrl = new URLSearchParams(location.search).get('theme');
-		theme = fromUrl || localStorage.getItem('lg-theme') || 'morris-parlor';
+		theme = fromUrl || localStorage.getItem('lg-theme') || 'circles';
 	});
 
 	$effect(() => {

@@ -10,89 +10,70 @@
 @import '@fontsource/space-grotesk/700.css';
 
 /*
- * Design tokens. Every theme below is derived from the William Morris wallpaper
- * palette used on justheatherbree.com (the "foyer"), so this site reads as a
- * companion "room" in the same house: deep teal-navy, sage, golden ochre,
- * terracotta-rose, parchment cream.
+ * Design tokens. Each theme is a "room" with its own vibe, built around a
+ * wallpaper tile (served from /static). The tile shows softly behind a scrim
+ * via --wallpaper / --wp-scrim; content sits on solid "framed" cards.
  *
- * Default (:root) = Morris Parlor. Other themes apply via [data-theme="..."].
+ * Default (:root) = circles. Other themes apply via [data-theme="..."].
  */
 
+/* Circles — playful, graphic; cream ground, coral + dusty blue + amber. */
 :root,
-[data-theme='morris-parlor'] {
-	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
-	--font-body: 'Inter', system-ui, sans-serif;
-
-	--bg: #efe8d6;
-	--bg-pattern: rgba(37, 51, 47, 0.04);
-	--surface: rgba(246, 241, 227, 0.85);
-	--text: #25332f;
-	--muted: #6b7363;
-	--border: #d8cfb8;
-
-	--accent: #9a6a3c;
-	--selected: #c25e3a;
-
-	--type-pillar: #b07a2e;
-	--type-event: #b5513c;
-	--type-person: #6e8b4e;
-	--type-location: #2e6e66;
-
-	--edge: rgba(37, 51, 47, 0.22);
-	--node-glow: 0;
-
-	--radius: 14px;
-	--shadow: 0 6px 24px rgba(37, 51, 47, 0.12);
-}
-
-[data-theme='morris-nightshade'] {
-	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
-	--font-body: 'Inter', system-ui, sans-serif;
-
-	--bg: #1c2a28;
-	--bg-pattern: rgba(236, 227, 204, 0.05);
-	--surface: rgba(42, 61, 57, 0.72);
-	--text: #ece3cc;
-	--muted: #9dab92;
-	--border: rgba(236, 227, 204, 0.18);
-
-	--accent: #e0b24e;
-	--selected: #f2c75a;
-
-	--type-pillar: #e0b24e;
-	--type-event: #e08a63;
-	--type-person: #9dbe6e;
-	--type-location: #5fb6a6;
-
-	--edge: rgba(236, 227, 204, 0.2);
-	--node-glow: 8;
-
-	--radius: 14px;
-	--shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
-}
-
-[data-theme='bright-atelier'] {
+[data-theme='circles'] {
 	--font-head: 'Space Grotesk', system-ui, sans-serif;
 	--font-body: 'Inter', system-ui, sans-serif;
 
-	--bg: #fbf7ec;
-	--bg-pattern: rgba(31, 42, 40, 0.035);
-	--surface: #ffffff;
-	--text: #1f2a28;
-	--muted: #6a7470;
-	--border: #e7e0ce;
+	--bg: #ebeae5;
+	--surface: rgba(251, 250, 246, 0.95);
+	--text: #3a4149;
+	--muted: #7c8086;
+	--border: #dad8cf;
 
-	--accent: #2f6fcf;
-	--selected: #e0532e;
+	--accent: #ee5436;
+	--selected: #2a333d;
 
-	--type-pillar: #e0a52e;
-	--type-event: #e2643c;
-	--type-person: #4fa06a;
-	--type-location: #2f7dc9;
+	--type-pillar: #e0882e;
+	--type-event: #ee5436;
+	--type-person: #5e8294;
+	--type-location: #3c4a57;
 
-	--edge: rgba(31, 42, 40, 0.2);
+	--edge: rgba(58, 65, 73, 0.18);
 	--node-glow: 0;
 
-	--radius: 12px;
-	--shadow: 0 8px 28px rgba(31, 42, 40, 0.1);
+	--wallpaper: url('/circles.webp');
+	--wp-scrim: rgba(235, 234, 229, 0.8);
+	--wp-size: 440px;
+
+	--radius: 14px;
+	--shadow: 0 6px 24px rgba(58, 65, 73, 0.14);
+}
+
+/* Mushrooms — earthy, botanical; near-white ground, moss + rust + amber + brown. */
+[data-theme='mushrooms'] {
+	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	--bg: #f4f2ea;
+	--surface: rgba(255, 255, 255, 0.94);
+	--text: #40392a;
+	--muted: #837c68;
+	--border: #e4decc;
+
+	--accent: #b5482e;
+	--selected: #2e3a1e;
+
+	--type-pillar: #7e5236;
+	--type-event: #c24e36;
+	--type-person: #6e7a45;
+	--type-location: #c99043;
+
+	--edge: rgba(64, 57, 42, 0.18);
+	--node-glow: 0;
+
+	--wallpaper: url('/mushrooms.jpg');
+	--wp-scrim: rgba(244, 242, 234, 0.82);
+	--wp-size: 420px;
+
+	--radius: 14px;
+	--shadow: 0 6px 24px rgba(64, 57, 42, 0.14);
 }
