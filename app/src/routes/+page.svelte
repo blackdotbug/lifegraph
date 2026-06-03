@@ -76,6 +76,9 @@
 	const next = () => {
 		index = (index + 1) % images.length;
 	};
+	const prev = () => {
+		index = (index - 1 + images.length) % images.length;
+	};
 	onMount(() => {
 		dpi = window.devicePixelRatio || 1;
 		context = /** @type {CanvasRenderingContext2D} */ (canvas.getContext('2d'));
@@ -138,6 +141,7 @@
 			};
 			if (activeNode.media?.gallery) {
 				images = activeNode.media.gallery;
+				index = 0;
 			}
 			simulationUpdate();
 			const timelineNode = document.getElementById(activeNode.node_id);
@@ -373,10 +377,15 @@
 				<iframe class="bonus-media" title={activeNode.label} src={activeNode.media.link}></iframe>
 			{/if}
 			{#if activeNode.media.gallery}
-				{#each [activeNode.media.gallery[index]] as src (index)}
-					<img class="gallery" src={`${base}/images/${src}`} alt="" />
-				{/each}
-				<button id="next" onclick={next}>Next!</button>
+				<div class="gallery-viewer">
+					{#if activeNode.media.gallery.length > 1}
+						<button class="nav prev" onclick={prev} aria-label="Previous image">‹</button>
+					{/if}
+					<img class="gallery" src={`${base}/images/${activeNode.media.gallery[index]}`} alt="" />
+					{#if activeNode.media.gallery.length > 1}
+						<button class="nav next" onclick={next} aria-label="Next image">›</button>
+					{/if}
+				</div>
 			{/if}
 		{/if}
 	</Modal>
@@ -505,16 +514,52 @@
 		border: none;
 		border-radius: calc(var(--radius) - 4px);
 	}
+	/* Fixed-size viewport so the modal doesn't resize as you page through images
+	   of different dimensions; each image scales to fit inside it. */
+	.gallery-viewer {
+		position: relative;
+		width: min(80vw, 760px);
+		height: min(68vh, 600px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	img.gallery {
 		display: block;
-		max-width: min(80vw, 700px);
-		max-height: 65vh;
+		max-width: 100%;
+		max-height: 100%;
+		width: auto;
 		height: auto;
+		object-fit: contain;
 		border-radius: calc(var(--radius) - 4px);
 	}
-	button#next {
+	.gallery-viewer .nav {
 		position: absolute;
-		right: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 42px;
+		height: 42px;
+		border: none;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.85);
+		color: var(--text);
+		font-size: 1.6rem;
+		line-height: 1;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: var(--shadow);
+	}
+	.gallery-viewer .nav:hover {
+		background: var(--accent);
+		color: #fff;
+	}
+	.gallery-viewer .prev {
+		left: 10px;
+	}
+	.gallery-viewer .next {
+		right: 10px;
 	}
 
 	/* Stack to a single column on small screens. */

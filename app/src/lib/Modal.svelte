@@ -26,16 +26,46 @@
 
 <style>
 	dialog {
-		height: 75vh;
-		border-radius: 0.2em;
-		border: none;
+		max-width: min(90vw, 860px);
+		max-height: 88vh;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
 		padding: 0;
+		background: var(--bg);
+		color: var(--text);
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+		overflow: auto;
 	}
 	dialog::backdrop {
-		background: rgba(0, 0, 0, 0.3);
+		background: rgba(20, 14, 24, 0.55);
+		backdrop-filter: blur(2px);
 	}
 	dialog > div {
-		padding: 1em;
+		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.75rem;
+	}
+	dialog hr {
+		width: 100%;
+		border: none;
+		border-top: 1px solid var(--border);
+		margin: 0.25rem 0 0;
+	}
+	dialog > div > button {
+		align-self: flex-end;
+		cursor: pointer;
+		border: 1px solid var(--border);
+		background: #fff;
+		color: var(--text);
+		font-weight: 600;
+		border-radius: 999px;
+		padding: 0.35rem 1.1rem;
+	}
+	dialog > div > button:hover {
+		border-color: var(--accent);
+		color: var(--accent);
 	}
 	dialog[open] {
 		animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -58,8 +88,5 @@
 		to {
 			opacity: 1;
 		}
-	}
-	button {
-		display: block;
 	}
 </style>
