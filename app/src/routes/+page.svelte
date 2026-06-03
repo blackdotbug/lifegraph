@@ -9,7 +9,15 @@
 	import { zoom, zoomIdentity } from 'd3-zoom';
 	import { select, selectAll, pointer } from 'd3-selection';
 	import { drag } from 'd3-drag';
-	import { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } from 'd3-force';
+	import {
+		forceSimulation,
+		forceLink,
+		forceManyBody,
+		forceCenter,
+		forceCollide,
+		forceX,
+		forceY
+	} from 'd3-force';
 	let d3 = {
 		zoom,
 		zoomIdentity,
@@ -21,7 +29,9 @@
 		forceLink,
 		forceManyBody,
 		forceCenter,
-		forceCollide
+		forceCollide,
+		forceX,
+		forceY
 	};
 	import Timeline from '$lib/Timeline.svelte';
 
@@ -74,6 +84,19 @@
 	/** @type {CanvasRenderingContext2D} */
 	let context;
 	let dpi = 1;
+	// Height reserved at the bottom of the graph for the legend, so nodes never
+	// settle or get dragged underneath it. Measured from the rendered legend.
+	let legendInset = 0;
+	function measureLegend() {
+		const el = document.getElementById('legend');
+		legendInset = el ? el.offsetHeight : 0;
+	}
+	// Repulsion scaled to the available area so the graph spreads enough to read
+	// the links on desktop without flinging nodes against the walls on mobile.
+	function chargeStrength() {
+		const area = width * Math.max(1, height - legendInset);
+		return -Math.max(28, Math.min(110, area / 3800));
+	}
 	let index = $state(0);
 	let images = [''];
 	const next = () => {
@@ -93,14 +116,21 @@
 				d3
 					.forceLink(simLinks)
 					.id((/** @type {any} */ d) => d.node_id)
-					.distance((/** @type {any} */ d) => d.target.size * 2.5)
+					// Cap link length so a hub's many leaf nodes don't fling out to the
+					// walls on the smaller mobile canvas.
+					.distance((/** @type {any} */ d) => Math.min(60, d.target.size * 2 + 8))
 			)
-			.force('charge', d3.forceManyBody().strength(-5))
+			// Repulsion spreads nodes apart so the links are readable...
+			.force('charge', d3.forceManyBody().strength(chargeStrength()))
 			.force(
 				'collide',
-				d3.forceCollide((/** @type {any} */ d) => d.size)
+				d3.forceCollide((/** @type {any} */ d) => d.size + 2)
 			)
-			.force('center', d3.forceCenter(width / 2, height / 2))
+			.force('center', d3.forceCenter(width / 2, (height - legendInset) / 2))
+			// ...while a gentle pull toward the center of the usable area keeps the
+			// whole graph centered rather than drifting to one side.
+			.force('x', d3.forceX(width / 2).strength(0.03))
+			.force('y', d3.forceY((height - legendInset) / 2).strength(0.03))
 			.on('tick', simulationUpdate);
 
 		d3.select(context.canvas).on('click', (event) => {
@@ -183,11 +213,12 @@
 	function simulationUpdate() {
 		if (!context) return;
 		const p = palette();
-		// Keep nodes inside the card so they settle within bounds (and the edges
-		// stay visible). Clamp in CSS-pixel space, accounting for radius.
+		// Keep nodes inside the card (and above the legend) so they settle within
+		// bounds. Clamp in CSS-pixel space, accounting for radius.
+		const bottom = height - legendInset;
 		nodes.forEach((d) => {
 			d.x = Math.max(d.size, Math.min(width - d.size, d.x));
-			d.y = Math.max(d.size, Math.min(height - d.size, d.y));
+			d.y = Math.max(d.size, Math.min(bottom - d.size, d.y));
 		});
 		// Reset to the DPI-scaled base transform, clear, then apply pan/zoom.
 		context.setTransform(dpi, 0, 0, dpi, 0, 0);
@@ -259,10 +290,12 @@
 
 	/** @param {any} currentEvent */
 	function dragged(currentEvent) {
-		// Clamp the drag target to the card bounds so a node can't be dragged out.
+		// Clamp the drag target to the card bounds (above the legend) so a node
+		// can't be dragged out or under the legend.
 		const r = currentEvent.subject.size;
+		const bottom = height - legendInset;
 		currentEvent.subject.fx = Math.max(r, Math.min(width - r, transform.invertX(currentEvent.x)));
-		currentEvent.subject.fy = Math.max(r, Math.min(height - r, transform.invertY(currentEvent.y)));
+		currentEvent.subject.fy = Math.max(r, Math.min(bottom - r, transform.invertY(currentEvent.y)));
 	}
 
 	/** @param {any} currentEvent */
@@ -300,8 +333,13 @@
 	// so the canvas went blurry and the graph drifted off-center.)
 	function resize() {
 		sizeCanvas();
+		measureLegend();
 		if (simulation) {
-			simulation.force('center', d3.forceCenter(width / 2, height / 2));
+			const cy = (height - legendInset) / 2;
+			simulation.force('charge', d3.forceManyBody().strength(chargeStrength()));
+			simulation.force('center', d3.forceCenter(width / 2, cy));
+			simulation.force('x', d3.forceX(width / 2).strength(0.03));
+			simulation.force('y', d3.forceY(cy).strength(0.03));
 			simulation.alpha(0.3).restart();
 		}
 		simulationUpdate();
@@ -348,15 +386,13 @@
 								</p>
 							{/each}
 						{/if}
+						{#if hasBonus}
+							<button class="bonus" onclick={() => (showModal = true)}>bonus content!</button>
+						{/if}
 					</div>
 				{/if}
 				<canvas use:fitToContainer bind:this={canvas}></canvas>
 				<div id="legend">
-					<div id="linkspot">
-						{#if hasBonus}
-							<button onclick={() => (showModal = true)}>bonus content!</button>
-						{/if}
-					</div>
 					<div class="legend-entry">
 						<div class="legend-circle" style="background: var(--type-pillar)"></div>
 						<h5>pillar</h5>
@@ -487,6 +523,25 @@
 		font-size: 0.95rem;
 		margin: 0.5rem 0;
 	}
+	/* The bonus-content button lives in the details panel (which is pointer-events:none,
+	   so the button re-enables itself). clear: both drops it below the floated image. */
+	div#nodeDetails .bonus {
+		pointer-events: auto;
+		clear: both;
+		margin-top: 0.5rem;
+		border: none;
+		background: var(--accent);
+		color: #fff;
+		font-weight: 600;
+		font-size: 0.85rem;
+		border-radius: 999px;
+		padding: 0.4rem 1.1rem;
+		cursor: pointer;
+		box-shadow: var(--shadow);
+	}
+	div#nodeDetails .bonus:hover {
+		filter: brightness(1.08);
+	}
 	div#legend {
 		position: absolute;
 		bottom: 0;
@@ -495,26 +550,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+		justify-content: center;
 		gap: 0.5rem 1rem;
 		padding: 0.6rem 0.9rem;
-	}
-	div#legend div#linkspot {
-		margin-right: auto;
-	}
-	div#legend div#linkspot button {
-		border: none;
-		background: var(--accent);
-		color: #fff;
-		font-weight: 600;
-		font-size: 0.85rem;
-		height: 32px;
-		border-radius: 999px;
-		padding: 0 1rem;
-		cursor: pointer;
-		box-shadow: var(--shadow);
-	}
-	div#legend div#linkspot button:hover {
-		filter: brightness(1.08);
+		/* Purely a key — let canvas clicks pass through it. */
+		pointer-events: none;
 	}
 	div#legend div.legend-entry {
 		display: flex;

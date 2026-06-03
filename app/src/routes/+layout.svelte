@@ -60,6 +60,7 @@
 		border-radius: 999px;
 		box-shadow: var(--shadow);
 		color: var(--muted);
+		text-align: center;
 	}
 
 	footer a {
