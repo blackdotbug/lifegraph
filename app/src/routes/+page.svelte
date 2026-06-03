@@ -68,7 +68,6 @@
 	let height = 600;
 	/** @type {any} */
 	let activeNode = $state(null);
-	const color = d3.scaleOrdinal(d3.schemeCategory10);
 	/** @type {any} */
 	let showCard = $state();
 	let transform = d3.zoomIdentity;
@@ -160,7 +159,26 @@
 			(activeNode.media?.link || activeNode.media?.video || activeNode.media?.gallery)
 		)
 	);
+	// Read the active theme's colors from CSS custom properties so the canvas
+	// stays in sync with the rest of the page (and with theme switches).
+	function palette() {
+		const s = getComputedStyle(document.documentElement);
+		/** @param {string} name @param {string} fallback */
+		const v = (name, fallback) => s.getPropertyValue(name).trim() || fallback;
+		return {
+			pillar: v('--type-pillar', '#888'),
+			event: v('--type-event', '#888'),
+			person: v('--type-person', '#888'),
+			location: v('--type-location', '#888'),
+			selected: v('--selected', 'violet'),
+			edge: v('--edge', 'rgba(0,0,0,0.25)'),
+			glow: parseFloat(v('--node-glow', '0'))
+		};
+	}
+
 	function simulationUpdate() {
+		if (!context) return;
+		const p = palette();
 		context.save();
 		context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 		context.translate(transform.x, transform.y);
@@ -170,21 +188,31 @@
 			context.beginPath();
 			context.moveTo(d.source.x, d.source.y);
 			context.lineTo(d.target.x, d.target.y);
-			context.strokeStyle = '#000';
+			context.strokeStyle = p.edge;
 			context.lineWidth = 1;
 			context.stroke();
 			context.globalAlpha = 1;
 		});
 
 		nodes.forEach((d) => {
+			const fill = p[/** @type {'pillar'|'event'|'person'|'location'} */ (d.type)] || '#888';
+			const isActive = activeNode && activeNode.node_id === d.node_id;
+			// Soft glow on dark themes (--node-glow > 0); none on light themes.
+			context.shadowBlur = p.glow;
+			context.shadowColor = p.glow ? fill : 'transparent';
 			context.beginPath();
 			context.arc(d.x, d.y, d.size, 0, 2 * Math.PI);
-			context.strokeStyle =
-				activeNode && activeNode.node_id === d.node_id ? 'violet' : 'transparent';
-			context.lineWidth = 5;
-			context.stroke();
-			context.fillStyle = color(d.type);
+			context.fillStyle = fill;
 			context.fill();
+			context.shadowBlur = 0;
+			context.shadowColor = 'transparent';
+			if (isActive) {
+				context.beginPath();
+				context.arc(d.x, d.y, d.size + 2, 0, 2 * Math.PI);
+				context.strokeStyle = p.selected;
+				context.lineWidth = 4;
+				context.stroke();
+			}
 		});
 		context.restore();
 	}
@@ -230,20 +258,35 @@
 		currentEvent.subject.fy = null;
 	}
 
-	function resize() {
-		({ width, height } = canvas);
-	}
-	/** @param {HTMLCanvasElement} element */
-	function fitToContainer(element) {
+	/** Size the canvas backing store to its container at the current DPI. */
+	/** @param {HTMLCanvasElement} [element] */
+	function sizeCanvas(element = canvas) {
+		if (!element) return;
 		dpi = window.devicePixelRatio || 1;
-		// Make it visually fill the positioned parent
 		element.style.width = '100%';
 		element.style.height = '100%';
-		// ...then set the internal size to match
 		element.width = element.offsetWidth * dpi;
 		element.height = element.offsetHeight * dpi;
-		width = element.offsetWidth * dpi;
-		height = element.offsetHeight * dpi;
+		width = element.width;
+		height = element.height;
+	}
+
+	// use: action — initial sizing before the simulation is created.
+	/** @param {HTMLCanvasElement} element */
+	function fitToContainer(element) {
+		sizeCanvas(element);
+	}
+
+	// Re-size the canvas AND re-center/relayout the simulation on resize or
+	// orientation change. (Previously only the width/height vars were updated,
+	// so the canvas went blurry and the graph drifted off-center.)
+	function resize() {
+		sizeCanvas();
+		if (simulation) {
+			simulation.force('center', d3.forceCenter(width / 2, height / 2));
+			simulation.alpha(0.3).restart();
+		}
+		simulationUpdate();
 	}
 </script>
 
@@ -261,7 +304,7 @@
 				{events}
 				activeId={activeNode ? activeNode.node_id : null}
 				onselect={setShowCard}
-				dotColor={color('event')}
+				dotColor="var(--type-event)"
 			/>
 		</section>
 		<section class="viz">
@@ -294,19 +337,19 @@
 						{/if}
 					</div>
 					<div class="legend-entry">
-						<div class="legend-circle" style={`background: ${color('pillar')}`}></div>
+						<div class="legend-circle" style="background: var(--type-pillar)"></div>
 						<h5>pillar</h5>
 					</div>
 					<div class="legend-entry">
-						<div class="legend-circle" style={`background: ${color('event')}`}></div>
+						<div class="legend-circle" style="background: var(--type-event)"></div>
 						<h5>event</h5>
 					</div>
 					<div class="legend-entry">
-						<div class="legend-circle" style={`background: ${color('person')}`}></div>
+						<div class="legend-circle" style="background: var(--type-person)"></div>
 						<h5>person</h5>
 					</div>
 					<div class="legend-entry">
-						<div class="legend-circle" style={`background: ${color('location')}`}></div>
+						<div class="legend-circle" style="background: var(--type-location)"></div>
 						<h5>location</h5>
 					</div>
 				</div>
@@ -317,11 +360,11 @@
 		{#if activeNode?.media}
 			{#if activeNode.media.video}
 				<!-- svelte-ignore a11y_media_has_caption -->
-				<video controls height={500} src={`${base}/images/${activeNode.media.video}`}></video>
+				<video class="bonus-media" controls src={`${base}/images/${activeNode.media.video}`}
+				></video>
 			{/if}
 			{#if activeNode.media.link}
-				<iframe title={activeNode.label} height={500} width={800} src={activeNode.media.link}
-				></iframe>
+				<iframe class="bonus-media" title={activeNode.label} src={activeNode.media.link}></iframe>
 			{/if}
 			{#if activeNode.media.gallery}
 				{#each [activeNode.media.gallery[index]] as src (index)}
@@ -336,85 +379,157 @@
 <style>
 	h1 {
 		width: 100%;
+		text-align: center;
+		font-size: clamp(1.8rem, 4vw, 2.8rem);
+		letter-spacing: -0.01em;
+		margin: 0.5rem 0 1.25rem;
 	}
 	div.flex-container {
 		display: flex;
 		flex-direction: row;
+		gap: 1.25rem;
+		align-items: stretch;
 	}
 	section.timeline {
-		min-width: 310px;
-		max-height: 75vh;
-		overflow-y: scroll;
+		flex: 0 0 300px;
+		max-height: 78vh;
+		overflow-y: auto;
+		padding: 0.5rem 0.75rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+	}
+	section.viz {
+		flex: 1 1 auto;
+		min-width: 0;
 	}
 	div.container {
-		height: 75vh;
+		position: relative;
+		height: 78vh;
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		box-shadow: var(--shadow);
+		overflow: hidden;
+		background: var(--surface);
+	}
+	div.container canvas {
+		display: block;
 	}
 	div#nodeDetails {
 		position: absolute;
-		width: 45vw;
-		min-width: 400px;
+		top: 0;
+		left: 0;
+		max-width: min(46ch, 90%);
 		pointer-events: none;
-		border-radius: 20px;
-		background-color: rgba(250, 235, 215, 0.4);
-		padding: 20px;
+		border-radius: var(--radius);
+		background: var(--surface);
+		border: 1px solid var(--border);
+		box-shadow: var(--shadow);
+		padding: 1.25rem;
+		margin: 0.75rem;
+		backdrop-filter: blur(4px);
 	}
 	div#nodeDetails img {
-		max-width: 300px;
-		max-height: 300px;
-		border-radius: 20px;
+		max-width: 40%;
+		max-height: 260px;
+		border-radius: calc(var(--radius) - 4px);
 		float: left;
-		margin: 0 20px 20px 0;
+		margin: 0 1rem 0.5rem 0;
 	}
 	div#nodeDetails h3 {
 		margin-top: 0;
+		font-size: 1.3rem;
+	}
+	div#nodeDetails p {
+		font-size: 0.95rem;
+		margin: 0.5rem 0;
 	}
 	div#legend {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		display: flex;
-		flex-direction: row;
-		width: 500px;
-		float: right;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 1rem;
+		padding: 0.6rem 0.9rem;
 	}
 	div#legend div#linkspot {
-		width: 140px;
+		margin-right: auto;
 	}
 	div#legend div#linkspot button {
 		border: none;
-		background-color: transparent;
-		font-size: 14px;
-		color: white;
-		text-shadow:
-			2px 2px 0 #000,
-			-1px -1px 0 #000,
-			1px -1px 0 #000,
-			-1px 1px 0 #000,
-			1px 1px 0 #000;
-		font-weight: 700;
-		background-image: url('/images/low-poly-grid-haikei.png');
-		background-size: cover;
-		background-repeat: no-repeat;
-		height: 30px;
-		border-radius: 15px;
-		margin-right: 10px;
-		padding: 0 10px;
+		background: var(--accent);
+		color: #fff;
+		font-weight: 600;
+		font-size: 0.85rem;
+		height: 32px;
+		border-radius: 999px;
+		padding: 0 1rem;
+		cursor: pointer;
+		box-shadow: var(--shadow);
+	}
+	div#legend div#linkspot button:hover {
+		filter: brightness(1.08);
 	}
 	div#legend div.legend-entry {
-		width: 75px;
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
 	}
 	div#legend div.legend-circle {
-		width: 10px;
-		height: 10px;
-		border-radius: 10px;
-		margin-bottom: 5px;
+		width: 11px;
+		height: 11px;
+		border-radius: 50%;
 	}
 	div#legend div.legend-entry h5 {
 		margin: 0;
+		font-size: 0.8rem;
+		font-weight: 500;
+		color: var(--text);
+	}
+	.bonus-media {
+		display: block;
+		width: min(80vw, 800px);
+		max-width: 100%;
+		height: auto;
+		aspect-ratio: 16 / 9;
+		border: none;
+		border-radius: calc(var(--radius) - 4px);
 	}
 	img.gallery {
-		max-width: 50vw;
+		display: block;
+		max-width: min(80vw, 700px);
 		max-height: 65vh;
+		height: auto;
+		border-radius: calc(var(--radius) - 4px);
 	}
 	button#next {
 		position: absolute;
 		right: 15px;
+	}
+
+	/* Stack to a single column on small screens. */
+	@media (max-width: 768px) {
+		div.flex-container {
+			flex-direction: column;
+		}
+		section.timeline {
+			flex: none;
+			width: 100%;
+			max-height: 40vh;
+			box-sizing: border-box;
+		}
+		div.container {
+			height: 62vh;
+		}
+		div#nodeDetails {
+			max-width: calc(100% - 1.5rem);
+		}
+		div#nodeDetails img {
+			max-width: 35%;
+		}
 	}
 </style>

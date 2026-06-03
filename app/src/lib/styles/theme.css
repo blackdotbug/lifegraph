@@ -1,0 +1,98 @@
+/* Fonts (self-hosted via @fontsource) */
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/fraunces/400.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/700.css';
+
+/*
+ * Design tokens. Every theme below is derived from the William Morris wallpaper
+ * palette used on justheatherbree.com (the "foyer"), so this site reads as a
+ * companion "room" in the same house: deep teal-navy, sage, golden ochre,
+ * terracotta-rose, parchment cream.
+ *
+ * Default (:root) = Morris Parlor. Other themes apply via [data-theme="..."].
+ */
+
+:root,
+[data-theme='morris-parlor'] {
+	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	--bg: #efe8d6;
+	--bg-pattern: rgba(37, 51, 47, 0.04);
+	--surface: rgba(246, 241, 227, 0.85);
+	--text: #25332f;
+	--muted: #6b7363;
+	--border: #d8cfb8;
+
+	--accent: #9a6a3c;
+	--selected: #c25e3a;
+
+	--type-pillar: #b07a2e;
+	--type-event: #b5513c;
+	--type-person: #6e8b4e;
+	--type-location: #2e6e66;
+
+	--edge: rgba(37, 51, 47, 0.22);
+	--node-glow: 0;
+
+	--radius: 14px;
+	--shadow: 0 6px 24px rgba(37, 51, 47, 0.12);
+}
+
+[data-theme='morris-nightshade'] {
+	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	--bg: #1c2a28;
+	--bg-pattern: rgba(236, 227, 204, 0.05);
+	--surface: rgba(42, 61, 57, 0.72);
+	--text: #ece3cc;
+	--muted: #9dab92;
+	--border: rgba(236, 227, 204, 0.18);
+
+	--accent: #e0b24e;
+	--selected: #f2c75a;
+
+	--type-pillar: #e0b24e;
+	--type-event: #e08a63;
+	--type-person: #9dbe6e;
+	--type-location: #5fb6a6;
+
+	--edge: rgba(236, 227, 204, 0.2);
+	--node-glow: 8;
+
+	--radius: 14px;
+	--shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme='bright-atelier'] {
+	--font-head: 'Space Grotesk', system-ui, sans-serif;
+	--font-body: 'Inter', system-ui, sans-serif;
+
+	--bg: #fbf7ec;
+	--bg-pattern: rgba(31, 42, 40, 0.035);
+	--surface: #ffffff;
+	--text: #1f2a28;
+	--muted: #6a7470;
+	--border: #e7e0ce;
+
+	--accent: #2f6fcf;
+	--selected: #e0532e;
+
+	--type-pillar: #e0a52e;
+	--type-event: #e2643c;
+	--type-person: #4fa06a;
+	--type-location: #2f7dc9;
+
+	--edge: rgba(31, 42, 40, 0.2);
+	--node-glow: 0;
+
+	--radius: 12px;
+	--shadow: 0 8px 28px rgba(31, 42, 40, 0.1);
+}
