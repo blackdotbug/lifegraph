@@ -146,12 +146,14 @@
 				images = activeNode.media.gallery;
 				index = 0;
 			}
-			simulationUpdate();
 			const timelineNode = document.getElementById(activeNode.node_id);
 			if (timelineNode) {
 				scrollIntoView(timelineNode, { scrollMode: 'if-needed', behavior: 'smooth' });
 			}
 		}
+		// Repaint in both cases so deselecting (activeNode → null) clears the
+		// selection ring from the previously selected node.
+		simulationUpdate();
 	}
 
 	// Whether the active node has any "bonus content" worth opening the modal for.
