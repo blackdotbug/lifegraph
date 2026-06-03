@@ -36,10 +36,13 @@
 	// (it mutates x/y/vx/vy on nodes and replaces simLinks' source/target with node
 	// refs). Wrapping them in reactivity would hand d3 stale object identities and
 	// freeze/desync the canvas. They are load-time constants — keep them plain.
+	// Node radius in CSS px (the canvas is DPI-scaled). MIN_NODE keeps low-degree
+	// nodes tappable on mobile; hubs grow with incoming links.
+	const MIN_NODE = 8;
 	/** @type {any[]} */
 	const nodes = nodeData.map((node) => {
 		const linkCount = links.filter((l) => l.target === node.node_id).length;
-		return { ...node, size: linkCount ? linkCount * 3 + 4 : 4 };
+		return { ...node, size: Math.max(MIN_NODE, linkCount * 3 + 4) };
 	});
 	/** @type {any[]} */
 	const simLinks = links.map((l) => ({ ...l }));
@@ -102,9 +105,9 @@
 
 		d3.select(context.canvas).on('click', (event) => {
 			const d = simulation.find(
-				transform.invertX(event.offsetX * dpi),
-				transform.invertY(event.offsetY * dpi),
-				50
+				transform.invertX(event.offsetX),
+				transform.invertY(event.offsetY),
+				34
 			);
 
 			setShowCard(d);
@@ -178,8 +181,16 @@
 	function simulationUpdate() {
 		if (!context) return;
 		const p = palette();
+		// Keep nodes inside the card so they settle within bounds (and the edges
+		// stay visible). Clamp in CSS-pixel space, accounting for radius.
+		nodes.forEach((d) => {
+			d.x = Math.max(d.size, Math.min(width - d.size, d.x));
+			d.y = Math.max(d.size, Math.min(height - d.size, d.y));
+		});
+		// Reset to the DPI-scaled base transform, clear, then apply pan/zoom.
+		context.setTransform(dpi, 0, 0, dpi, 0, 0);
+		context.clearRect(0, 0, width, height);
 		context.save();
-		context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 		context.translate(transform.x, transform.y);
 		context.scale(transform.k, transform.k);
 
@@ -226,9 +237,9 @@
 	/** @param {any} currentEvent */
 	function dragsubject(currentEvent) {
 		const node = simulation.find(
-			transform.invertX(currentEvent.x * dpi),
-			transform.invertY(currentEvent.y * dpi),
-			50
+			transform.invertX(currentEvent.x),
+			transform.invertY(currentEvent.y),
+			34
 		);
 		if (node) {
 			node.x = transform.applyX(node.x);
@@ -246,8 +257,10 @@
 
 	/** @param {any} currentEvent */
 	function dragged(currentEvent) {
-		currentEvent.subject.fx = transform.invertX(currentEvent.x);
-		currentEvent.subject.fy = transform.invertY(currentEvent.y);
+		// Clamp the drag target to the card bounds so a node can't be dragged out.
+		const r = currentEvent.subject.size;
+		currentEvent.subject.fx = Math.max(r, Math.min(width - r, transform.invertX(currentEvent.x)));
+		currentEvent.subject.fy = Math.max(r, Math.min(height - r, transform.invertY(currentEvent.y)));
 	}
 
 	/** @param {any} currentEvent */
@@ -257,17 +270,21 @@
 		currentEvent.subject.fy = null;
 	}
 
-	/** Size the canvas backing store to its container at the current DPI. */
+	/**
+	 * Size the canvas to its container. `width`/`height` track the CSS-pixel size;
+	 * the backing store is DPI-scaled and the context is scaled by `dpi` at draw time,
+	 * so the whole simulation (positions, sizes, hit-testing) works in CSS pixels.
+	 */
 	/** @param {HTMLCanvasElement} [element] */
 	function sizeCanvas(element = canvas) {
 		if (!element) return;
 		dpi = window.devicePixelRatio || 1;
 		element.style.width = '100%';
 		element.style.height = '100%';
-		element.width = element.offsetWidth * dpi;
-		element.height = element.offsetHeight * dpi;
-		width = element.width;
-		height = element.height;
+		width = element.offsetWidth;
+		height = element.offsetHeight;
+		element.width = width * dpi;
+		element.height = height * dpi;
 	}
 
 	// use: action — initial sizing before the simulation is created.
@@ -308,15 +325,7 @@
 
 <div>
 	<h1>Heather Bree's Lifegraph</h1>
-	<div class="flex-container">
-		<section class="timeline">
-			<Timeline
-				{events}
-				activeId={activeNode ? activeNode.node_id : null}
-				onselect={setShowCard}
-				dotColor="var(--type-event)"
-			/>
-		</section>
+	<div class="board">
 		<section class="viz">
 			<div class="container">
 				{#if activeNode}
@@ -365,6 +374,14 @@
 				</div>
 			</div>
 		</section>
+		<section class="timeline">
+			<Timeline
+				{events}
+				activeId={activeNode ? activeNode.node_id : null}
+				onselect={setShowCard}
+				dotColor="var(--type-event)"
+			/>
+		</section>
 	</div>
 	<Modal bind:showModal>
 		{#if activeNode?.media}
@@ -392,44 +409,52 @@
 </div>
 
 <style>
+	/* Title sits on an opaque plate so it stays legible over the wallpaper. */
 	h1 {
-		width: 100%;
+		width: fit-content;
+		max-width: 100%;
+		box-sizing: border-box;
+		margin: 0.5rem auto 1.5rem;
 		text-align: center;
-		font-size: clamp(1.8rem, 4vw, 2.8rem);
+		font-size: clamp(1.5rem, 4vw, 2.5rem);
 		letter-spacing: -0.01em;
-		margin: 0.5rem 0 1.25rem;
-	}
-	div.flex-container {
-		display: flex;
-		flex-direction: row;
-		gap: 1.25rem;
-		align-items: stretch;
-	}
-	section.timeline {
-		flex: 0 0 300px;
-		max-height: 78vh;
-		overflow-y: auto;
-		padding: 0.5rem 0.75rem;
+		padding: 0.3rem 1.4rem;
 		background: var(--surface);
 		border: 1px solid var(--border);
-		border-radius: var(--radius);
+		border-radius: 999px;
 		box-shadow: var(--shadow);
 	}
-	section.viz {
-		flex: 1 1 auto;
-		min-width: 0;
-	}
-	div.container {
-		position: relative;
+	/* One opaque card holds the graph (left) and the timeline (right). */
+	div.board {
+		display: flex;
+		flex-direction: row;
 		height: 78vh;
+		background: var(--surface);
 		border: 1px solid var(--border);
 		border-radius: var(--radius);
 		box-shadow: var(--shadow);
 		overflow: hidden;
-		background: var(--surface);
+	}
+	section.viz {
+		flex: 1 1 auto;
+		min-width: 0;
+		position: relative;
+	}
+	div.container {
+		position: relative;
+		height: 100%;
+		overflow: hidden;
 	}
 	div.container canvas {
 		display: block;
+	}
+	/* Timeline lives in the same card, on the right, with its scrollbar at the edge. */
+	section.timeline {
+		flex: 0 0 300px;
+		height: 100%;
+		overflow-y: auto;
+		padding: 0.75rem 0.5rem 0.75rem 0.75rem;
+		border-left: 1px solid var(--border);
 	}
 	div#nodeDetails {
 		position: absolute;
@@ -562,19 +587,21 @@
 		right: 10px;
 	}
 
-	/* Stack to a single column on small screens. */
+	/* Stack to a single column on small screens (graph on top, timeline below). */
 	@media (max-width: 768px) {
-		div.flex-container {
+		div.board {
 			flex-direction: column;
+			height: auto;
+		}
+		section.viz {
+			height: 56vh;
 		}
 		section.timeline {
 			flex: none;
-			width: 100%;
-			max-height: 40vh;
-			box-sizing: border-box;
-		}
-		div.container {
-			height: 62vh;
+			height: auto;
+			max-height: 38vh;
+			border-left: none;
+			border-top: 1px solid var(--border);
 		}
 		div#nodeDetails {
 			max-width: calc(100% - 1.5rem);

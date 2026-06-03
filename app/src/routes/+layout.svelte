@@ -35,9 +35,10 @@
 		flex: 1;
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
+		padding: 1.25rem;
 		width: 100%;
-		max-width: 1200px;
+		/* Narrower than before so more of the wallpaper shows in the side margins. */
+		max-width: 1040px;
 		margin: 0 auto;
 		box-sizing: border-box;
 	}
@@ -46,9 +47,19 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding: 1.5rem 1rem;
-		color: var(--muted);
+		padding: 1.25rem;
 		font-size: 0.9rem;
+	}
+
+	/* Opaque pill so the footer stays legible over the wallpaper. */
+	footer p {
+		margin: 0;
+		padding: 0.4rem 1rem;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		box-shadow: var(--shadow);
+		color: var(--muted);
 	}
 
 	footer a {
