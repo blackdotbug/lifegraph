@@ -6,18 +6,13 @@
 	import Modal from '$lib/Modal.svelte';
 	import { DateTime } from 'luxon';
 	import scrollIntoView from 'scroll-into-view-if-needed';
-	import { scaleLinear, scaleOrdinal } from 'd3-scale';
 	import { zoom, zoomIdentity } from 'd3-zoom';
-	import { schemeCategory10 } from 'd3-scale-chromatic';
 	import { select, selectAll, pointer } from 'd3-selection';
 	import { drag } from 'd3-drag';
 	import { forceSimulation, forceLink, forceManyBody, forceCenter, forceCollide } from 'd3-force';
 	let d3 = {
 		zoom,
 		zoomIdentity,
-		scaleLinear,
-		scaleOrdinal,
-		schemeCategory10,
 		select,
 		selectAll,
 		pointer,
@@ -128,16 +123,6 @@
 					.scaleExtent([1 / 10, 8])
 					.on('zoom', zoomed)
 			);
-
-		// The canvas is drawn imperatively and only repaints on simulation ticks,
-		// so once the layout settles a theme change wouldn't recolor the nodes.
-		// Repaint whenever the active theme (data-theme on <html>) changes.
-		const themeObserver = new MutationObserver(() => simulationUpdate());
-		themeObserver.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ['data-theme']
-		});
-		return () => themeObserver.disconnect();
 	});
 	/** @param {any} node */
 	function setShowCard(node) {
@@ -301,8 +286,19 @@
 </script>
 
 <svelte:head>
-	<title>Lifegraph</title>
-	<meta name="description" content="Heather Bree's lifegraph" />
+	<title>Heather Bree's Lifegraph</title>
+	<meta
+		name="description"
+		content="An interactive graph of Heather Bree's life — the people, places, events, and pillars that shaped it, and how they connect."
+	/>
+	<meta property="og:title" content="Heather Bree's Lifegraph" />
+	<meta
+		property="og:description"
+		content="An interactive graph of Heather Bree's life — the people, places, events, and pillars that shaped it, and how they connect."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://justheatherbree.com/lifegraph/" />
+	<meta name="twitter:card" content="summary" />
 </svelte:head>
 <svelte:window onresize={resize} />
 

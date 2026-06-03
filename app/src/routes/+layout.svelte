@@ -1,30 +1,11 @@
 <script>
 	import './styles.css';
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
+	import wallpaper from '$lib/assets/mushrooms.jpg';
 
 	let { children } = $props();
-
-	// --- TEMPORARY theme previewer (remove once a theme is chosen) ---
-	const THEMES = [
-		{ id: 'circles', label: 'Circles' },
-		{ id: 'mushrooms', label: 'Mushrooms' }
-	];
-	let theme = $state('circles');
-
-	onMount(() => {
-		const fromUrl = new URLSearchParams(location.search).get('theme');
-		theme = fromUrl || localStorage.getItem('lg-theme') || 'circles';
-	});
-
-	$effect(() => {
-		if (!browser) return;
-		document.documentElement.dataset.theme = theme;
-		localStorage.setItem('lg-theme', theme);
-	});
 </script>
 
-<div class="app">
+<div class="app" style:background-image={`url(${wallpaper})`}>
 	<main>
 		{@render children?.()}
 	</main>
@@ -37,23 +18,17 @@
 	</footer>
 </div>
 
-<!-- TEMPORARY: theme previewer for dialing in the redesign -->
-<div class="theme-switcher">
-	<label>
-		theme
-		<select bind:value={theme}>
-			{#each THEMES as t (t.id)}
-				<option value={t.id}>{t.label}</option>
-			{/each}
-		</select>
-	</label>
-</div>
-
 <style>
 	.app {
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
+		/* The wallpaper tile, applied here (not on body) so Vite resolves the asset
+		   URL with the production base path. background-image comes from the inline
+		   style above. */
+		background-repeat: repeat;
+		background-size: var(--wp-size, 420px);
+		background-attachment: fixed;
 	}
 
 	main {
@@ -77,32 +52,6 @@
 	}
 
 	footer a {
-		font-weight: 600;
-	}
-
-	.theme-switcher {
-		position: fixed;
-		bottom: 12px;
-		right: 12px;
-		background: var(--surface);
-		border: 1px solid var(--border);
-		border-radius: 999px;
-		padding: 0.3rem 0.7rem;
-		font-size: 0.8rem;
-		color: var(--muted);
-		box-shadow: var(--shadow);
-		backdrop-filter: blur(6px);
-		z-index: 50;
-	}
-	.theme-switcher label {
-		display: flex;
-		align-items: center;
-		gap: 0.4rem;
-	}
-	.theme-switcher select {
-		border: none;
-		background: transparent;
-		color: var(--text);
 		font-weight: 600;
 	}
 </style>

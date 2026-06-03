@@ -6,52 +6,17 @@
 @import '@fontsource/fraunces/400.css';
 @import '@fontsource/fraunces/600.css';
 @import '@fontsource/fraunces/700.css';
-@import '@fontsource/space-grotesk/500.css';
-@import '@fontsource/space-grotesk/700.css';
 
 /*
- * Design tokens. Each theme is a "room" with its own vibe, built around a
- * wallpaper tile (served from /static). The tile shows softly behind a scrim
- * via --wallpaper / --wp-scrim; content sits on solid "framed" cards.
- *
- * Default (:root) = circles. Other themes apply via [data-theme="..."].
+ * Design tokens — the "Mushrooms" room. An earthy, botanical companion to the
+ * portfolio (justheatherbree.com): its own vibe, not a match. The wallpaper tile
+ * (src/lib/assets/mushrooms.jpg) is applied to the .app wrapper in +layout.svelte
+ * so Vite resolves the URL with the production base path. Node colors are the
+ * user's hand-picked palette. The whole system is token-driven, so adding another
+ * room later is just another token block.
  */
 
-/* Circles — playful, graphic; cream ground, coral + dusty blue + amber. */
-:root,
-[data-theme='circles'] {
-	--font-head: 'Space Grotesk', system-ui, sans-serif;
-	--font-body: 'Inter', system-ui, sans-serif;
-
-	--bg: #ebeae5;
-	--surface: rgba(251, 250, 246, 0.95);
-	--text: #36404a;
-	--muted: #7c8086;
-	--border: #dad8cf;
-
-	--accent: #f54623;
-	--selected: #1b2730;
-
-	/* User-picked: #85ACBC steel, #F54623 coral, #455057 slate, #F9B56B amber.
-	   Lightest (amber) on big pillars; highest-contrast (coral) on the many events. */
-	--type-pillar: #f9b56b;
-	--type-event: #f54623;
-	--type-person: #455057;
-	--type-location: #85acbc;
-
-	--edge: rgba(54, 64, 74, 0.18);
-	--node-glow: 0;
-
-	--wallpaper: url('/circles.webp');
-	--wp-scrim: transparent;
-	--wp-size: 440px;
-
-	--radius: 14px;
-	--shadow: 0 6px 24px rgba(58, 65, 73, 0.14);
-}
-
-/* Mushrooms — earthy, botanical; near-white ground, moss + rust + amber + brown. */
-[data-theme='mushrooms'] {
+:root {
 	--font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
 	--font-body: 'Inter', system-ui, sans-serif;
 
@@ -74,8 +39,6 @@
 	--edge: rgba(45, 37, 53, 0.2);
 	--node-glow: 0;
 
-	--wallpaper: url('/mushrooms.jpg');
-	--wp-scrim: transparent;
 	--wp-size: 420px;
 
 	--radius: 14px;
