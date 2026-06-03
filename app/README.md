@@ -47,9 +47,13 @@ After editing, the running graph hot-reloads. To publish your changes:
 ```bash
 git add src/lib/data/*.json
 git commit -m "Update lifegraph data"
-npm run build          # outputs to ./build
-# then deploy ./build to GitHub Pages
+git push               # push to main
 ```
+
+Pushing to `main` triggers the **Deploy to GitHub Pages** GitHub Action
+(`.github/workflows/deploy.yml`), which builds the site and publishes it to the `deploy`
+branch that Pages serves. No manual build/copy needed — you can also re-run it from the
+Actions tab via "Run workflow".
 
 ## Building
 
